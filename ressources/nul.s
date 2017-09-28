@@ -1,4 +1,4 @@
-.name "nul"
+.name "wqw"
 .comment "nuul"
 
 deb:	ldi		%0, %0, r0

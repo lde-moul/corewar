@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/09/26 20:31:32 by gdelabro         ###   ########.fr       */
+/*   Created: 2017/09/27 17:40:23 by gdelabro          #+#    #+#             */
+/*   Updated: 2017/09/27 19:39:09 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#ifndef ASM_H
+# define ASM_H
 
 #include "../ft_printf/ft_printf.h"
 #include "../op/op.h"
@@ -22,30 +22,20 @@
 #include <errno.h>
 #include <sys/time.h>
 
-typedef struct		s_vm
+typedef struct		s_asm
 {
-	int				nb_champ;
-	char			ram[MEM_SIZE];
-}					t_vm;
+	int				fd;
+	char			name[PROG_NAME_LENGTH];
+	int				name_enter;
+	char			comment[COMMENT_LENGTH];
+	int				com_enter;
+	char			*file;
+	char			*file_name;
+	char			**split;
+	int				i;
+	int				i2;
+}					t_asm;
 
-typedef struct		s_instruction
-{
-	int				name;
-	int				ocp;
-	int				p1;
-	int				p2;
-	int				p3;
-}					t_instruction
-
-typedef struct		s_proc
-{
-	int				r[REG_NUMBER];
-	int				pc;
-	int				carry;
-	int				id;
-	int				nb_c;
-	int				last_l;
-	t_instruction	inst;
-}					t_proc;
+void				ft_exit(int err);
 
 #endif

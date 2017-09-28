@@ -6,17 +6,17 @@
 #    By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/09/26 19:50:57 by gdelabro         ###   ########.fr        #
+#    Updated: 2017/09/27 18:09:51 by gdelabro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_1 = asm
 NAME_2 = corewar
 
-SRC_PATH_1 = asm/src
-SRC_NAME_1 =
+SRC_PATH_1 = asm_dir/src
+SRC_NAME_1 = main.c error.c
 
-SRC_PATH_2 = corewar/src
+SRC_PATH_2 = corewar_dir/src/
 SRC_NAME_2 =
 
 OBJ_PATH_1 = asm/obj
