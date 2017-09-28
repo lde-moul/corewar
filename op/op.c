@@ -6,11 +6,26 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2017/09/26 20:02:49 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:10:30 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op.h"
+
+
+
+
+typedef	struct	s_op
+{
+	char	*name;
+	int		ocp;
+	char	arg[3];
+	int		id;
+	int		cycle;
+	char	*action;
+	int		limited;
+	int		carry;
+}				t_op;
 
 t_op    op_tab[17] =
 {
