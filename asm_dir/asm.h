@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:40:23 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/09/27 19:39:09 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/09/28 18:05:55 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ typedef struct		s_asm
 }					t_asm;
 
 void				ft_exit(int err);
+void				pars_info(t_asm *e);
 
 #endif
