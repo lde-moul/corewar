@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/09/28 19:00:50 by lde-moul         ###   ########.fr        #
+#    Updated: 2017/09/28 19:34:08 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -17,7 +17,7 @@ NAME_2 = corewar
 SRC_PATH_1 = asm_dir/src
 SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c
 
-SRC_PATH_2 = corewar_dir/src/
+SRC_PATH_2 = corewar_dir/src
 SRC_NAME_2 = main.c\
 			 swap.c\
 			 parser/parser.c\
@@ -32,7 +32,7 @@ OBJ_NAME_2 = $(SRC_NAME_2:.c=.o)
 CC = clang
 CFLAGS = -g -Wall -Werror -Wextra
 
-CPPFLAGS = -I includes -I ft_printf/includes
+CPPFLAGS = -I corewar_dir/src -I includes -I ft_printf/includes
 
 LDFLAGS = -L ft_printf
 LDLIBS = -lftprintf
