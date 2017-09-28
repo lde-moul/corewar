@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:56:42 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/09/27 19:39:25 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/09/28 18:08:46 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	del_com(char *file)
 				file[i++] = '\n';
 }
 
-void	init_struct(t_asm *e, char *file)
+void	init_struct_asm(t_asm *e, char *file)
 {
 	(e->fd = open(file, O_RDONLY)) <= 0 ? ft_exit(3) : 0;
 	ft_bzero(e->name, PROG_NAME_LENGTH);
@@ -33,6 +33,7 @@ void	init_struct(t_asm *e, char *file)
 	e->i = -1;
 	!(e->file_name = ft_strdup(file)) ? ft_exit(2) : 0;
 	ft_cpyfile(e->fd, &e->file);
+	pars_info(e);
 	del_com(e->file);
 	e->split = ft_strsplit(e->file, '\n');
 }
@@ -44,5 +45,6 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		ft_exit(1);
 	e = malloc(sizeof(*e));
-	init_struct(e, av[1]);
+	init_struct_asm(e, av[1]);
+	return (1);
 }
