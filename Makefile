@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/09/27 18:09:51 by gdelabro         ###   ########.fr        #
+#    Updated: 2017/09/28 18:32:10 by gdelabro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,18 @@ NAME_1 = asm
 NAME_2 = corewar
 
 SRC_PATH_1 = asm_dir/src
-SRC_NAME_1 = main.c error.c
+SRC_NAME_1 = main.c error.c pars_info.c
 
 SRC_PATH_2 = corewar_dir/src/
-SRC_NAME_2 =
+SRC_NAME_2 = main.c\
+			 swap.c\
+			 parser/parser.c\
+			 parser/load_player.c\
 
-OBJ_PATH_1 = asm/obj
+OBJ_PATH_1 = asm_dir/obj
 OBJ_NAME_1 = $(SRC_NAME_1:.c=.o)
 
-OBJ_PATH_2 = corewar/obj
+OBJ_PATH_2 = corewar_dir/obj
 OBJ_NAME_2 = $(SRC_NAME_2:.c=.o)
 
 CC = clang
