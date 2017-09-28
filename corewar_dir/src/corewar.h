@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/09/28 17:35:58 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/09/28 19:50:49 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct	s_player
 {
 	int				number;
 	t_header		header;
+	int				last_live;
+	int				nb_live;
 }					t_player;
 
 typedef struct	s_instruction

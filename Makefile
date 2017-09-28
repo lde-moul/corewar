@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/09/28 19:00:50 by lde-moul         ###   ########.fr        #
+#    Updated: 2017/09/28 20:00:43 by afourcad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -22,6 +22,7 @@ SRC_NAME_2 = main.c\
 			 swap.c\
 			 parser/parser.c\
 			 parser/load_player.c\
+			 instructions/live.c\
 
 OBJ_PATH_1 = asm_dir/obj
 OBJ_NAME_1 = $(SRC_NAME_1:.c=.o)
