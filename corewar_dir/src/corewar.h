@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/09/29 18:08:52 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/09/29 18:16:46 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void			load_player(t_player *p, const char *name);
 int				swap_int(int n);
 unsigned int	swap_uint(unsigned int n);
 short			swap_short(short n);
+
+void	ft_direct_load(int source, int *dest, int *carry);
 
 #endif
