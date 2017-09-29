@@ -6,43 +6,35 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:09 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/09/28 16:11:51 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/09/29 16:31:55 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-#include <unistd.h>
-#include <fcntl.h>
 
-static void	check_magic_number(int magic, const char *name)
+static void	error(const char *msg, const char *name)
 {
-	if (swap_int(magic) != COREWAR_EXEC_MAGIC)
-	{
-		ft_printf("Invalid magic number in \"%s\"\n", name);
-		exit(1);
-	}
+	ft_printf(msg, name);
+	exit(1);
 }
 
-int			load_player(t_player *player, const char *name)
+void		load_player(t_player *p, const char *name)
 {
 	int	file;
 
 	file = open(name, O_RDONLY);
 	if (file < 0)
-	{
-		ft_printf("Can't open \"%s\"\n", name);
-		return (0);
-	}
-	if (read(file, &player->header, sizeof(t_header)) != sizeof(t_header))
-	{
-		ft_printf("\"%s\" is too short\n", name);
-		return (0);
-	}
-	check_magic_number(player->header.magic, name);
-	player->header.prog_name[PROG_NAME_LENGTH] = '\0';
-	player->header.comment[COMMENT_LENGTH] = '\0';
-	// !!! Check prog_size
-	player->
+		error("Can't open \"%s\"\n", name);
+	if (read(file, &p->header, sizeof(t_header)) != sizeof(t_header))
+		error("\"%s\" is too short\n", name);
+	if (swap_int(p->header.magic) != COREWAR_EXEC_MAGIC)
+		error("Invalid magic number in \"%s\"", name);
+	p->header.prog_size = swap_uint(p->header.prog_size);
+	p->header.prog_name[PROG_NAME_LENGTH] = '\0';
+	p->header.comment[COMMENT_LENGTH] = '\0';
+	if (p->header.prog_size > CHAMP_MAX_SIZE)
+		error("\"%s\" is too long\n", name);
+	if (read(file, p->prog, p->header.prog_size) != p->header.prog_size)
+		error("\"%s\" is too long\n", name);
 	close(file);
-	return (1);
 }

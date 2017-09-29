@@ -6,11 +6,11 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:00 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/09/28 14:57:15 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/09/29 15:25:45 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	swap_int(int n)
+int				swap_int(int n)
 {
 	return (((n & 0x000000ff) << 24)
 		| ((n & 0x0000ff00) << 8)
@@ -18,7 +18,15 @@ int	swap_int(int n)
 		| ((n & 0xff000000) >> 24));
 }
 
-int	swap_short(short n)
+unsigned int	swap_uint(unsigned int n)
+{
+	return (((n & 0x000000ff) << 24)
+		| ((n & 0x0000ff00) << 8)
+		| ((n & 0x00ff0000) >> 8)
+		| ((n & 0xff000000) >> 24));
+}
+
+short			swap_short(short n)
 {
 	return (((n & 0x00ff) << 8)
 		| ((n & 0xff00) >> 8));
