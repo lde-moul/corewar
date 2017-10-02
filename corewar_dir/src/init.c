@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/02 17:18:10 by lde-moul         ###   ########.fr       */
+/*   Created: 2017/10/02 17:17:26 by lde-moul          #+#    #+#             */
+/*   Updated: 2017/10/02 17:35:22 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	main(int argc, char **argv)
+void init_vm(t_vm *vm)
 {
-	t_vm	vm;
-
-	parse(argc, argv, &vm);
-	init_vm(&vm);
-	handle_main_loop(&vm);
-	return (0);
+	ft_bzero(vm->ram, MEM_SIZE);
+	vm->processes = NULL;
 }
