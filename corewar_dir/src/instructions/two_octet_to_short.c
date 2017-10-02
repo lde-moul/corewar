@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   live.c                                             :+:      :+:    :+:   */
+/*   two_octet_to_short.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 19:26:21 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/02 16:19:08 by afourcad         ###   ########.fr       */
+/*   Created: 2017/10/02 18:09:19 by afourcad          #+#    #+#             */
+/*   Updated: 2017/10/02 18:44:45 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "corewar.h"
 
-void	live(int number, t_player *player[MAX_PLAYERS])
+short	two_octets_to_short(char ram[MEM_SIZE], int pc)
 {
-	int	i;
+	char	tab[2];
 
-	i = 0;
-	while (player[i])
-	{
-		if (player[i]->number == number)
-		{
-			ft_printf("The player $%s ($%#x) is in life !",
-					player[i]->header.prog_name, number);
-			++(player[i]->nb_live);
-			// incrementer last_live
-			return ;
-		}
-		++i;
-	}
-	ft_printf("The player $UnknownPlayer ($%#x) is in life !", number);
+	tab[0] = ram[(pc + 1) % MEM_SIZE];
+	tab[1] = ram[pc];
+	return (*((short*)tab));
 }
