@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/09/28 19:00:50 by lde-moul         ###   ########.fr        #
+#    Updated: 2017/09/29 17:31:31 by gdelabro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -15,9 +15,10 @@ NAME_1 = asm
 NAME_2 = corewar
 
 SRC_PATH_1 = asm_dir/src
-SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c
+SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c split_file.c aff_struct.c\
+			fill_label.c test_instruction.c
 
-SRC_PATH_2 = corewar_dir/src/
+SRC_PATH_2 = corewar_dir/src
 SRC_NAME_2 = main.c\
 			 swap.c\
 			 parser/parser.c\

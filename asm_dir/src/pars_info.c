@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 19:38:02 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/09/28 18:16:31 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:31:21 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void	pars_comment(t_asm *e, int i)
 	while (e->file[++i] && e->file[i] != '\"' && ++i2 < COMMENT_LENGTH)
 		e->comment[i2] = e->file[i];
 	i2 == COMMENT_LENGTH || !e->file[i] ? ft_exit(5) : 0;
+	while (e->file[++i] && (e->file[i] == ' ' || e->file[i] == '\t'))
+		;
+	e->file[i] != '\n' ? ft_exit(5) : 0;
+	split_file(e, i);
 }
 
 void	pars_info(t_asm *e)
