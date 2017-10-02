@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2017/09/28 19:33:14 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/02 18:09:49 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,22 @@
 **
 */
 
-typedef	struct	s_op
+typedef	struct					s_op
 {
 	char	*name;
 	int		ocp;
 	char	arg[3];
 	int		id;
-	int		cycle;
+	int		cycles;
 	char	*action;
 	int		limited;
 	int		carry;
-}				t_op;
+}								t_op;
 
 t_op							op_tab[17];
+
 typedef char					t_arg_type;
+typedef int						t_reg;
 
 #define T_REG					1
 #define T_DIR					2
