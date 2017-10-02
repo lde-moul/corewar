@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/09/29 16:51:47 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/02 18:47:51 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,22 @@ int				load_player(t_player *player, const char *name);
 int				swap_int(int n);
 int				swap_short(short n);
 
-void	ft_direct_load(int source, int *dest, int *carry);
+/*
+** Instructions
+*/
+
+short			two_octets_to_short(char ram[MEM_SIZE], int pc);
+int				four_octets_to_short(char ram[MEM_SIZE], int pc);
+
+void			direct_load(int source, int *dest, int *carry);
+void			add(int	r1, int r2, int *r3, int *carry);
+void			direct_store(t_vm *vm, t_proc *proc, int nb_reg, int value);
+void			live(int number, t_player *player[MAX_PLAYERS]);
+void			add(int	r1, int r2, int *r3, int *carry);
+void			sub(int r1, int r2, int *r3, int *carry);
+void			and(int param_a, int param_b, int *reg, int *carry);
+void			or(int param_a, int param_b, int *reg, int *carry);
+void			xor(int param_a, int param_b, int *reg, int *carry);
+void			zjmp(short jump, int *pc, int carry);
 
 #endif
