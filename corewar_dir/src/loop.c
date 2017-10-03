@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/02 18:57:56 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/03 17:27:10 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ static void	handle_processes(t_vm *vm)
 {
 	t_proc	*process;
 
+	printf("\nHandling processes\n");
 	process = vm->processes;
 	while (process)
 	{
+		printf("Process cycles: %d\n", process->cycles);
 		process->cycles--;
 		if (!process->cycles)
 			execute_instruction(process, vm);
@@ -28,8 +30,12 @@ static void	handle_processes(t_vm *vm)
 
 void		handle_main_loop(t_vm *vm)
 {
-	while (0)
+	int	i;
+
+	i = 0;
+	while (i < 30)
 	{
 		handle_processes(vm);
+		i++;
 	}
 }
