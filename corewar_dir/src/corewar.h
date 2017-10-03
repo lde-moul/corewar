@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/02 18:15:01 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/03 19:51:26 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ typedef struct	s_player
 
 typedef struct	s_instruction
 {
-	int				name;
+	int				opcode;
+	int				id;
 	int				ocp;
-	int				p[3];
+	t_arg_type		param_types[3];
+	int				params[3];
 }					t_instruction;
 
 typedef struct	s_proc
@@ -47,7 +49,7 @@ typedef struct	s_proc
 	int				cycles;
 	int				last_live;
 	t_instruction	inst;
-	struct s_proc	next;
+	struct s_proc	*next;
 }					t_proc;
 
 typedef struct	s_vm
@@ -61,6 +63,10 @@ typedef struct	s_vm
 
 void			init_vm(t_vm *vm);
 void			handle_main_loop(t_vm *vm);
+
+void			create_process(t_vm *vm, int pc, int player_number);
+void			kill_process(t_proc *process, t_vm *vm);
+void			execute_instruction(t_proc *process, t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);

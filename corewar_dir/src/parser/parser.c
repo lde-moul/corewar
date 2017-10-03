@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:21 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/02 17:40:04 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/03 17:00:41 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	parse_players(int argc, char **argv, int *i, t_vm *vm)
 		vm->players[vm->num_players].number = vm->num_players - 1; // !!!
 		load_player(&vm->players[vm->num_players], argv[*i]);
 		vm->num_players++;
-		i++;
+		(*i)++;
 	}
 }
 
