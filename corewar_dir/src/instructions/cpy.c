@@ -15,5 +15,4 @@
 void	cpy_int(int	nbr, char ram[MEM_SIZE])
 {
 	
-
 }
