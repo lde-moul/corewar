@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+// /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/05 18:50:24 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:28:55 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int				ocp_needed(char arg[3]);
 void			ocp_to_param_types(t_arg_type param_types[3], char ocp);
 
 void			parse(int argc, char **argv, t_vm *vm);
+void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);
 
 int				swap_int(int n);
@@ -83,10 +84,13 @@ short			swap_short(short n);
 */
 
 short			two_octets_to_short(char ram[MEM_SIZE], int pc);
-int				four_octets_to_short(char ram[MEM_SIZE], int pc);
+int				four_octets_to_int(char ram[MEM_SIZE], int pc);
 
-void			direct_load(int source, int *dest, int *carry);
-void			direct_store(t_vm *vm, t_proc *proc, int nb_reg, int value);
+void			direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			add(int	r1, int r2, int *r3, int *carry);
+void			direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			live(int number, t_player *player[MAX_PLAYERS]);
 void			add(int	r1, int r2, int *r3, int *carry);
 void			sub(int r1, int r2, int *r3, int *carry);

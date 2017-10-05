@@ -6,19 +6,49 @@
 /*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/02 16:18:53 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:28:21 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "corewar.h"
 
-void	direct_store(t_vm *vm, t_proc *proc, int nb_reg, int value)
+void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 {
-	vm->ram[(proc->pc + (value % IDX_MOD)) % MEM_SIZE] =
-		proc->r[nb_reg] & 0x000000ff;
-	vm->ram[(proc->pc + 1 + (value % IDX_MOD)) % MEM_SIZE] =
-		proc->r[nb_reg] & 0x0000ff00 >> 8;
-	vm->ram[(proc->pc + 2 + (value % IDX_MOD)) % MEM_SIZE] =
-		proc->r[nb_reg] & 0x00ff0000 >> 16;
-	vm->ram[(proc->pc + 3 + (value % IDX_MOD)) % MEM_SIZE] =
-		proc->r[nb_reg] & 0xff000000 >> 24;
+	int	value;
+
+	value = 0;
+	if (inst->param_types[1] == IND_CODE)
+	{
+		vm->ram[(proc->pc + (inst->params[1] % IDX_MOD)) % MEM_SIZE] =
+			proc->r[inst->params[0]] & 0x000000ff;
+		vm->ram[(proc->pc + 1 + (inst->params[1] % IDX_MOD)) % MEM_SIZE] =
+			proc->r[inst->params[0]] & 0x0000ff00 >> 8;
+		vm->ram[(proc->pc + 2 + (inst->params[1] % IDX_MOD)) % MEM_SIZE] =
+			proc->r[inst->params[0]] & 0x00ff0000 >> 16;
+		vm->ram[(proc->pc + 3 + (inst->params[1] % IDX_MOD)) % MEM_SIZE] =
+			proc->r[inst->params[0]] & 0xff000000 >> 24;
+	}
+	else
+		proc->r[inst->params[1]] = proc->r[inst->params[0]];
+	proc->carry = inst->params[0] == 0 ? 1 : 0;
+}
+
+void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
+{
+	int	value;
+
+	value = 0;
+	if (inst->param_types[1] == IND_CODE)
+	{
+		vm->ram[(proc->pc + inst->params[1]) % MEM_SIZE] =
+			proc->r[inst->params[0]] & 0x000000ff;
+		vm->ram[(proc->pc + 1 + inst->params[1]) % MEM_SIZE] =
+			proc->r[inst->params[0]] & 0x0000ff00 >> 8;
+		vm->ram[(proc->pc + 2 + inst->params[1]) % MEM_SIZE] =
+			proc->r[inst->params[0]] & 0x00ff0000 >> 16;
+		vm->ram[(proc->pc + 3 + inst->params[1]) % MEM_SIZE] =
+			proc->r[inst->params[0]] & 0xff000000 >> 24;
+	}
+	else
+		proc->r[inst->params[1]] = proc->r[inst->params[0]];
+	proc->carry = inst->params[0] == 0 ? 1 : 0;
 }
