@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/02 18:54:52 by afourcad         ###   ########.fr        #
+#    Updated: 2017/10/03 20:38:12 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,21 +17,25 @@ SRC_PATH_1 = asm_dir/src
 SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c
 
 SRC_PATH_2 = corewar_dir/src
-SRC_NAME_2 = main.c\
+SRC_NAME_2 = ../../op/op.c\
+			 main.c\
+			 init.c\
+			 loop.c\
+			 process.c\
 			 swap.c\
 			 parser/parser.c\
 			 parser/load_player.c\
 			 instructions/live.c\
-			 instructions/direct_load.c
-			 instructions/direct_store.c
-			 instructions/ft_add.c
-			 instructions/ft_sub.c
-			 instructions/and.c
-			 instructions/or.c
-			 instructions/xor.c
-			 instruction/zjump.c
-			 instructions/two_octet_to_short.c
-			 instructions/four_octets_to_int.c
+			 instructions/direct_load.c\
+			 instructions/direct_store.c\
+			 instructions/ft_add.c\
+			 instructions/ft_sub.c\
+			 instructions/and.c\
+			 instructions/or.c\
+			 instructions/xor.c\
+			 instruction/zjump.c\
+			 instructions/two_octet_to_short.c\
+			 instructions/four_octets_to_int.c\
 
 OBJ_PATH_1 = asm_dir/obj
 OBJ_NAME_1 = $(SRC_NAME_1:.c=.o)
@@ -78,6 +82,7 @@ $(OBJ_PATH_2)/%.o: $(SRC_PATH_2)/%.c
 	@printf "\033[31;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH_2) 2> /dev/null || true
 	@mkdir $(OBJ_PATH_2)/parser 2> /dev/null || true
+	@mkdir $(OBJ_PATH_2)/instructions 2> /dev/null || true
 	@$(CC) $(CFLAGS) -c $< $(CPPFLAGS) -o $@
 
 clean:

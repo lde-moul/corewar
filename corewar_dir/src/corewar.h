@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/05 17:52:56 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/05 17:55:09 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,29 @@ typedef struct	s_proc
 {
 	int				r[REG_NUMBER];
 	int				pc;
-	int				carry;
-	int				id;
-	int				nb_cycles;
+	char			carry;
+	// int			id; // Unused?
+	int				cycles;
 	int				last_live;
-	int				opcode;
+	t_instruction	inst;
+	struct s_proc	*next;
 }					t_proc;
 
 typedef struct	s_vm
 {
 	char			ram[MEM_SIZE];
-	// t_proc		*processes;
+	t_proc			*processes;
 	int				num_players;
 	t_player		players[MAX_PLAYERS];
 	int				dump_cycles;
 }				t_vm;
+
+void			init_vm(t_vm *vm);
+void			handle_main_loop(t_vm *vm);
+
+void			create_process(t_vm *vm, int pc, int player_number);
+void			kill_process(t_proc *process, t_vm *vm);
+void			execute_instruction(t_proc *process, t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);
