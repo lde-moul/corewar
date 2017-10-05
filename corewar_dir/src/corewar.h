@@ -1,4 +1,4 @@
-// /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/05 19:28:55 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/05 20:19:54 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,6 @@ void			handle_main_loop(t_vm *vm);
 void			create_process(t_vm *vm, int pc, int player_number);
 void			kill_process(t_proc *process, t_vm *vm);
 void			execute_instruction(t_proc *process, t_vm *vm);
-
-int				ocp_needed(char arg[3]);
-void			ocp_to_param_types(t_arg_type param_types[3], char ocp);
 
 void			parse(int argc, char **argv, t_vm *vm);
 void			parse(int argc, char **argv, t_vm *vm);
