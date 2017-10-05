@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/02 18:56:20 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/05 17:52:56 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ typedef struct	s_player
 
 typedef struct	s_instruction
 {
-	int				name;
+	int				opcode;
+	int				id;
 	int				ocp;
-	int				p[3];
+	t_arg_type		param_types[3];
+	int				params[3];
 }					t_instruction;
 
 typedef struct	s_proc
@@ -46,7 +48,7 @@ typedef struct	s_proc
 	int				id;
 	int				nb_cycles;
 	int				last_live;
-	t_instruction	inst;
+	int				opcode;
 }					t_proc;
 
 typedef struct	s_vm
