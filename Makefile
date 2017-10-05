@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/05 15:34:43 by lde-moul         ###   ########.fr        #
+#    Updated: 2017/10/05 18:12:31 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRC_NAME_2 = ../../op/op.c\
 			 loop.c\
 			 process.c\
 			 execute_instruction.c\
-			 ocp.c\
 			 swap.c\
 			 parser/parser.c\
 			 parser/load_player.c\
