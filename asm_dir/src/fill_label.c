@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 15:51:32 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/02 19:42:39 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/06 18:48:27 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ void	creat_label_struct(t_asm *e, int i, int i2)
 	malloc_name_label(e, i, i2);
 }
 
-void		fill_label(t_asm *e)
+void	fill_label(t_asm *e)
 {
 	int		i;
 	int		i2;
 	char	c;
 
 	i = -1;
+	e->test = 0;
 	while (e->split[++i] && (i2 = -1))
 	{
 		while ((c = e->split[i][++i2]) && (c == ' ' || c == '\t'))
@@ -68,6 +69,12 @@ void		fill_label(t_asm *e)
 			creat_label_struct(e, i, i2);
 		else
 			i2 = -1;
-		test_instruction(e->split[i] + i2 + 1, e);
+		test_instruction(e->split[i] += i2 + 1, e);
 	}
+	e->num = 0;
+	e->test = 1;
+	i = -1;
+	while (e->split[++i])
+		test_instruction(e->split[i], e);
+	write_file(e);
 }

@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 17:26:21 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/02 20:04:48 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/06 19:12:51 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,15 @@ void	free_instruction(t_asm *e)
 		ft_strdel(&(e->u.p[i]));
 	ft_strdel(&(e->u.name));
 	e->u.t_n = 0;
-	e->u.nb_param = 0;
 }
 
 void	fill_nb_param(t_asm *e)
 {
-	int i;
-
-	i = -1;
-	while (ft_strcmp(op_tab[++i].name, e->u.name) && i < 16)
+	e->u.i = -1;
+	while (++e->u.i < 16 && ft_strcmp(op_tab[e->u.i].name, e->u.name))
 		;
-	i == 16 ? ft_exit(6) : 0;
-	e->u.nb_param = op_tab[i].nb_param;
+	e->u.i == 16 ? ft_exit(6) : 0;
+	e->u.nb_param = op_tab[e->u.i].nb_param;
 }
 
 void	fill_param(char *line, t_asm *e)
@@ -60,7 +57,6 @@ void	fill_param(char *line, t_asm *e)
 			|| e->u.p[i2][0] == 0 ? ft_exit(7) : 0;
 		while (i2 != e->u.nb_param - 1 && is_space(line[++i]))
 			;
-		ft_printf("<%s>\n", e->u.p[i2]);
 	}
 }
 
@@ -83,8 +79,8 @@ void	fill_instruction(char *line, t_asm *e)
 	while (line[++i2] && is_space(line[i2]))
 		;
 	fill_nb_param(e);
-	ft_printf("{yellow}%s{none}  %d\n", e->u.name, e->u.nb_param);
 	fill_param(line + i2, e);
+	test_arg(e);
 }
 
 void	test_instruction(char *line, t_asm *e)
@@ -94,9 +90,10 @@ void	test_instruction(char *line, t_asm *e)
 
 	i = -1;
 	a = 0;
+	e->i = 0;
 	while (line[++i])
 		line[i] != ' ' || line[i] != '\t' ? a++ : 0;
-	a ? e->num++ : 0;
 	a ? fill_instruction(line, e) : 0;
+	a ? e->i = 1 : 0;
 	free_instruction(e);
 }

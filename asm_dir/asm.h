@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:40:23 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/02 19:31:40 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/06 19:32:04 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,27 @@ typedef struct		s_instruction
 	char			*name;
 	char			*p[3];
 	int				t_p[3];
+	int				t_arg[3];
+	int				value[3];
 	int				t_n;
 	int				nb_param;
+	int				i;
 }					t_instruction;
 
 typedef struct		s_asm
 {
 	int				fd;
-	char			name[PROG_NAME_LENGTH];
-	char			comment[COMMENT_LENGTH];
+	char			name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
+	char			content[CHAMP_MAX_SIZE + 10];
 	char			*file;
 	char			*file_name;
+	char			*new_file;
 	char			**split;
 	int				nb_lab;
 	int				num;
 	int				i;
+	int				test;
 	int				i2;
 	t_lab			*l;
 	t_instruction	u;
@@ -58,7 +64,15 @@ int					is_space(char c);
 void				pars_info(t_asm *e);
 void				split_file(t_asm *e, int i2);
 void				aff_struct(t_asm *e);
+int					test_arg_label(char *arg, t_asm *e);
+void				write_arg(t_asm *e);
 void				fill_label(t_asm *e);
 void				test_instruction(char *line, t_asm *e);
+void				test_arg(t_asm *e);
+int					calcul_taille(t_asm *e);
+void				write_file(t_asm *e);
+unsigned int		swap_uint(unsigned int n);
+int					swap_int(int n);
+short				swap_short(short n);
 
 #endif
