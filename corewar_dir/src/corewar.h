@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/03 20:36:41 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/05 20:19:54 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_proc
 	// int			id; // Unused?
 	int				cycles;
 	int				last_live;
-	t_instruction	inst;
+	char			opcode;
 	struct s_proc	*next;
 }					t_proc;
 
@@ -69,6 +69,7 @@ void			kill_process(t_proc *process, t_vm *vm);
 void			execute_instruction(t_proc *process, t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
+void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);
 
 int				swap_int(int n);
@@ -80,11 +81,13 @@ short			swap_short(short n);
 */
 
 short			two_octets_to_short(char ram[MEM_SIZE], int pc);
-int				four_octets_to_short(char ram[MEM_SIZE], int pc);
+int				four_octets_to_int(char ram[MEM_SIZE], int pc);
 
-void			direct_load(int source, int *dest, int *carry);
+void			direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			add(int	r1, int r2, int *r3, int *carry);
-void			direct_store(t_vm *vm, t_proc *proc, int nb_reg, int value);
+void			direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			live(int number, t_player *player[MAX_PLAYERS]);
 void			add(int	r1, int r2, int *r3, int *carry);
 void			sub(int r1, int r2, int *r3, int *carry);

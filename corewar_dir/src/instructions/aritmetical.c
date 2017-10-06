@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   or.c                                               :+:      :+:    :+:   */
+/*   ft_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/02 16:37:12 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/02 16:41:07 by afourcad         ###   ########.fr       */
+/*   Created: 2017/10/02 16:13:23 by afourcad          #+#    #+#             */
+/*   Updated: 2017/10/02 16:25:30 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	or(int param_a, int param_b, int *reg, int *carry)
+void	add(t_proc *proc, t_instruction *inst)
 {
-	*reg = param_a | param_b;
-	*carry = *reg == 0 ? 1 : 0;
+	proc->r[inst->params[2]] =
+		proc->r[inst->params[0]] + proc->r[inst->params[1]];
+	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
+}
+
+void	sub(t_proc *proc, t_instruction *inst)
+{
+	proc->r[inst->params[2]] =
+		proc->r[inst->params[0]] - proc->r[inst->params[1]];
+	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
 }
