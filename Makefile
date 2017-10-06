@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/05 20:17:44 by lde-moul         ###   ########.fr        #
+#    Updated: 2017/10/06 17:23:32 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_NAME_2 = ../../op/op.c\
 			 loop.c\
 			 process.c\
 			 execute_instruction.c\
+			 op_functions.c\
 			 swap.c\
 			 parser/parser.c\
 			 parser/load_player.c\
@@ -34,7 +35,7 @@ SRC_NAME_2 = ../../op/op.c\
 			 instructions/and.c\
 			 instructions/or.c\
 			 instructions/xor.c\
-			 instruction/zjump.c\
+			 instructions/zjmp.c\
 			 instructions/two_octet_to_short.c\
 			 instructions/four_octets_to_int.c\
 

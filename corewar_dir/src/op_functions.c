@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   op_functions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/06 18:45:50 by lde-moul         ###   ########.fr       */
+/*   Created: 2017/10/06 17:27:01 by lde-moul          #+#    #+#             */
+/*   Updated: 2017/10/06 17:29:58 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	handle_processes(t_vm *vm)
+void	(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*) =
 {
-	t_proc	*process;
-
-	// printf("\nHandling processes\n");
-	process = vm->processes;
-	while (process)
-	{
-		// printf("Process cycles: %d\n", process->cycles);
-		process->cycles--;
-		if (!process->cycles)
-			execute_instruction(process, vm);
-		process = process->next;
-	}
-}
-
-void		handle_main_loop(t_vm *vm)
-{
-	int	i;
-
-	i = 0;
-	while (i < 30)
-	{
-		handle_processes(vm);
-		i++;
-	}
-}
+	NULL,
+	direct_load,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	long_direct_load,
+	NULL,
+	NULL,
+	NULL
+};
