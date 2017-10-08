@@ -16,7 +16,11 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 	int			i;
 
 	i = 0;
+<<<<<<< HEAD
 	while (vm->players[i])
+=======
+	while (vm->players[i] != NULL)
+>>>>>>> Adrien
 	{
 		if (vm->players[i]->number == inst->params[0])
 		{
