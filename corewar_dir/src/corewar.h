@@ -85,15 +85,14 @@ int				four_octets_to_int(char ram[MEM_SIZE], int pc);
 
 void			direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			add(int	r1, int r2, int *r3, int *carry);
 void			direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			live(int number, t_player *player[MAX_PLAYERS]);
-void			add(int	r1, int r2, int *r3, int *carry);
-void			sub(int r1, int r2, int *r3, int *carry);
-void			and(int param_a, int param_b, int *reg, int *carry);
-void			or(int param_a, int param_b, int *reg, int *carry);
-void			xor(int param_a, int param_b, int *reg, int *carry);
+void			live(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			add(t_proc *proc, t_instruction *inst);
+void			sub(t_proc *proc, t_instruction *inst);
+void			cor_and(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			cor_or(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			cor_xor(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			zjmp(short jump, int *pc, int carry);
 
 #endif
