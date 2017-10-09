@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/09 19:05:27 by afourcad         ###   ########.fr        #
+#    Updated: 2017/10/09 19:19:58 by gdelabro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,12 @@ NAME_1 = asm
 NAME_2 = corewar
 
 SRC_PATH_1 = asm_dir/src
-SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c
+SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c split_file.c aff_struct.c\
+			fill_label.c test_instruction.c test_arg.c calcul_taille.c write_file.c\
+			test_arg_label.c write_arg.c free_struct.c
 
 SRC_PATH_2 = corewar_dir/src
+<<<<<<< HEAD
 SRC_NAME_2 = ../../op/op.c\
 			 main.c\
 			 init.c\
@@ -24,6 +27,9 @@ SRC_NAME_2 = ../../op/op.c\
 			 process.c\
 			 execute_instruction.c\
 			 op_functions.c\
+=======
+SRC_NAME_2 = main.c\
+>>>>>>> gdelabro
 			 swap.c\
 			 parser/parser.c\
 			 parser/load_player.c\
@@ -61,7 +67,7 @@ OBJ_1 = $(addprefix $(OBJ_PATH_1)/,$(OBJ_NAME_1))
 SRC_2 = $(addprefix $(SRC_PATH_2)/,$(SRC_NAME_2))
 OBJ_2 = $(addprefix $(OBJ_PATH_2)/,$(OBJ_NAME_2))
 
-all: $(LIB) $(NAME_1) $(NAME_2)
+all: $(LIB) $(NAME_1) #$(NAME_2)
 
 $(LIB):
 	@make -C ft_printf
