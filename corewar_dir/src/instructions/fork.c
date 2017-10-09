@@ -12,14 +12,12 @@ void	cpy_reg(int src[REG_NUMBER], int dst[REG_NUMBER])
 	}
 }
 
-t_proc	*fork(t_proc *src, t_instruction *inst)
+void	cor_fork(t_vm *vm, t_proc *src, t_instruction *inst)
 {
 	t_proc	*new;
-	t_proc	*lst;
 	
-	lst = src;
 	if (!(new = malloc(sizeof(t_proc))))
-		return (NULL);
+		exit (1);
 	cpy_reg(src->r, new->r);
 	new->pc = ((src->pc + (inst->params[0] % IDX_MOD)) % MEM_SIZE);
 	new->carry = src->carry;
@@ -27,20 +25,16 @@ t_proc	*fork(t_proc *src, t_instruction *inst)
 	new->last_live = src->last_live;
 	new->opcode = src->opcode;
 	new->next = NULL;
-	// while(lst->next)
-	//	lst = lst->next;
-	//lst->next = &new;
-	return (new);
+	vm->processes = new;
+	new->next = src;
 }
 
-t_proc	*lfork(t_proc *src, t_instruction *inst)
+void	cor_lfork(t_vm *vm, t_proc *src, t_instruction *inst)
 {
 	t_proc	*new;
-	t_proc	*lst;
 
-	lst = src;
 	if (!(new = malloc(sizeof(t_proc))))
-		return (NULL);
+		exit (1);
 	cpy_reg(src->r, new->r);
 	new->pc = ((src->pc + inst->params[0]) % MEM_SIZE);
 	new->carry = src->carry;
@@ -48,8 +42,6 @@ t_proc	*lfork(t_proc *src, t_instruction *inst)
 	new->last_live = src->last_live;
 	new->opcode = src->opcode;
 	new->next = NULL;
-	// while(lst->next)
-	//	lst = lst->next;
-	//lst->next = &new;
-	return (new);
+	vm->processes = new;
+	new->next = src;
 }

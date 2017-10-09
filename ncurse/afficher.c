@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add.c                                           :+:      :+:    :+:   */
+/*   afficher.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/02 16:13:23 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/09 18:24:23 by afourcad         ###   ########.fr       */
+/*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
+/*   Updated: 2017/10/09 19:06:25 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <ncurses.h>
 #include "corewar.h"
 
-void	add(t_vm *vm, t_proc *proc, t_instruction *inst)
+void	afficher(t_vm *vm)
 {
-	(void)vm;
-	proc->r[inst->params[2]] =
-		proc->r[inst->params[0]] + proc->r[inst->params[1]];
-	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
-}
+	WINDOW *boite;
+	int	i = 1;
+	int	j = 2;
+	int	pc = 0;
 
-void	sub(t_vm *vm, t_proc *proc, t_instruction *inst)
-{
-	(void)vm;
-	proc->r[inst->params[2]] =
-		proc->r[inst->params[0]] - proc->r[inst->params[1]];
-	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
+	initscr();
+	boite= subwin(stdscr, 66, 195, 0, 0);
+	box(boite, ACS_VLINE, ACS_HLINE);
+	while (i < 65)
+	{
+		move(i, 2);
+		while (j < 193)
+		{
+			printw("%.2x ", vm->r[pc]);
+			++pc;
+			j += 3;
+		}
+		++i;
+		j = 2;
+	}
+	refresh();
+	getch();
+	endwin();
+	free(boite);
 }
