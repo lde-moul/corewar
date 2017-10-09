@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:52:27 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/06 17:38:57 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:44:49 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	aff_struct(t_asm *e)
 {
-	int i;
-
-	i = -1;
-	ft_printf("name: {blue}%s{none}\ncomment: {green}%s{none}\nlabel:\n",
-			e->name, e->comment);
-	while (++i < e->nb_lab)
-		ft_printf("%10s num: %d\n", e->l[i].label, e->l[i].num);
+	ft_printf("{green}name: {none}%s\n"
+			"{blue}comment: {none}%s\n"
+			"{yellow}size (champ): {none}%d bytes\n"
+			"{yellow}size (file): {none}%d bytes\n"
+			"{red}instruction number: {none}%d\n"
+			, e->name, e->comment, e->num, e->num + sizeof(t_header)
+			, e->nb_instruction);
 }

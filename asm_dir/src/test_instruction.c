@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 17:26:21 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/06 19:12:51 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:45:26 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void	test_instruction(char *line, t_asm *e)
 		line[i] != ' ' || line[i] != '\t' ? a++ : 0;
 	a ? fill_instruction(line, e) : 0;
 	a ? e->i = 1 : 0;
+	a && e->test == 2 ? e->nb_instruction++ : 0;
 	free_instruction(e);
 }

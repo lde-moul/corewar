@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:56:42 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/06 18:23:58 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:49:35 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,34 @@ void	init_struct_asm(t_asm *e, char *file)
 	e->u.nb_param = 0;
 	e->u.t_p[0] = 0;
 	e->u.t_p[1] = 0;
+	e->nb_instruction = 0;
 	e->u.t_p[2] = 0;
 	!(e->file_name = ft_strdup(file)) ? ft_exit(2) : 0;
 	ft_cpyfile(e->fd, &e->file);
 	pars_info(e);
 }
 
+void	lunch_it(char *av)
+{
+	t_asm *e;
+
+	!(e = malloc(sizeof(*e))) ? ft_exit(2) : 0;
+	init_struct_asm(e, av);
+	fill_label(e);
+	aff_struct(e);
+	free_struct(e);
+}
+
 int		main(int ac, char **av)
 {
-	t_asm	*e;
+	int i;
 
-	if (ac != 2)
-		ft_exit(1);
-	!(e = malloc(sizeof(*e))) ? ft_exit(2) : 0;
-	init_struct_asm(e, av[1]);
-	fill_label(e);
-	//aff_struct(e);
+	i = 0;
+	(void)ac;
+	while (av[++i])
+	{
+		lunch_it(av[i]);
+		av[i + 1] ? ft_printf("\n------------------------------------\n\n") : 0;
+	}
 	return (1);
 }

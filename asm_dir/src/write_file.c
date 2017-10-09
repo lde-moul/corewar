@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 18:41:42 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/06 19:38:01 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:45:33 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	init_write(t_asm *e)
 {
 	int i;
 
-	!(e->new_file = malloc((i = ft_strlen(e->file_name)) + 5)) ? ft_exit(2) : 0;
+	!(e->new_file =
+			malloc((i = ft_strlen(e->file_name)) + 5)) ? ft_exit(2) : 0;
 	ft_bzero(e->new_file, ft_strlen(e->file_name) + 5);
 	ft_strcpy(e->new_file, e->file_name);
 	while (--i >= 0 && e->new_file[i] != '.' && e->new_file[i] != '/')

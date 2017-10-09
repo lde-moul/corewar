@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 16:35:27 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/06 17:56:10 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:45:20 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,10 @@ void	test_one_arg(char *arg, int type, t_asm *e, int v)
 	t_arg += test_arg_direct(arg, e, v);
 	!(t_arg & type) ? ft_exit(9) : 0;
 	e->u.t_arg[v] = t_arg;
-	//e->test == 2 ? ft_printf("<%7-s type:%d>\nvalue: %d\n", e->u.p[v], t_arg, e->u.value[v]) : 0;
 }
 
 void	test_arg(t_asm *e)
 {
-	//e->test == 2 ? ft_printf("{yellow}%s{none}  %d\n", e->u.name, e->num) : 0;
 	test_one_arg(e->u.p[0], op_tab[e->u.i].arg[0], e, 0);
 	e->u.nb_param >= 2 ?
 		test_one_arg(e->u.p[1], op_tab[e->u.i].arg[1], e, 1) : 0;

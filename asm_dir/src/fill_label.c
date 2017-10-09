@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 15:51:32 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/06 18:48:27 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:53:13 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	malloc_name_label(t_asm *e, int i, int i2)
 		lab[++i3] = e->split[i][i2];
 	lab[++i3] = 0;
 	e->l[e->nb_lab - 1].num = e->num;
+	e->l[e->nb_lab - 1].l = i;
+	e->l[e->nb_lab - 1].i = i2 + 1;
 }
 
 void	creat_label_struct(t_asm *e, int i, int i2)
@@ -57,8 +59,8 @@ void	fill_label(t_asm *e)
 	char	c;
 
 	i = -1;
-	e->test = 0;
-	while (e->split[++i] && (i2 = -1))
+	while (!(e->test = 0)
+			&& e->split[++i] && (i2 = -1))
 	{
 		while ((c = e->split[i][++i2]) && (c == ' ' || c == '\t'))
 			;
@@ -72,9 +74,8 @@ void	fill_label(t_asm *e)
 		test_instruction(e->split[i] += i2 + 1, e);
 	}
 	e->num = 0;
-	e->test = 1;
 	i = -1;
-	while (e->split[++i])
+	while ((e->test = 1) && e->split[++i])
 		test_instruction(e->split[i], e);
 	write_file(e);
 }

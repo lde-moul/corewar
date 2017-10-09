@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/06 19:17:24 by gdelabro         ###   ########.fr        #
+#    Updated: 2017/10/09 18:41:51 by gdelabro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -17,7 +17,7 @@ NAME_2 = corewar
 SRC_PATH_1 = asm_dir/src
 SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c split_file.c aff_struct.c\
 			fill_label.c test_instruction.c test_arg.c calcul_taille.c write_file.c\
-			test_arg_label.c write_arg.c
+			test_arg_label.c write_arg.c free_struct.c
 
 SRC_PATH_2 = corewar_dir/src
 SRC_NAME_2 = main.c\

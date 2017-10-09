@@ -6,26 +6,28 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:40:23 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/06 19:32:04 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:55:44 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-#include "../ft_printf/ft_printf.h"
-#include "../op/op.h"
-#include <fcntl.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <sys/time.h>
+# include "../ft_printf/ft_printf.h"
+# include "../op/op.h"
+# include <fcntl.h>
+# include <sys/types.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <errno.h>
+# include <sys/time.h>
 
 typedef struct		s_lab
 {
 	char			*label;
 	int				num;
+	int				l;
+	int				i;
 }					t_lab;
 
 typedef struct		s_instruction
@@ -57,6 +59,7 @@ typedef struct		s_asm
 	int				i2;
 	t_lab			*l;
 	t_instruction	u;
+	int				nb_instruction;
 }					t_asm;
 
 void				ft_exit(int err);
@@ -69,6 +72,7 @@ void				write_arg(t_asm *e);
 void				fill_label(t_asm *e);
 void				test_instruction(char *line, t_asm *e);
 void				test_arg(t_asm *e);
+void				free_struct(t_asm *e);
 int					calcul_taille(t_asm *e);
 void				write_file(t_asm *e);
 unsigned int		swap_uint(unsigned int n);
