@@ -11,22 +11,26 @@
 /* ************************************************************************** */
 #include "corewar.h"
 
-void	live(int number, t_player *player[MAX_PLAYERS])
+void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 {
-	int	i;
+	int			i;
 
 	i = 0;
-	while (player[i])
+<<<<<<< HEAD
+	while (vm->players[i])
+=======
+	while (vm->players[i] != NULL)
+>>>>>>> Adrien
 	{
-		if (player[i]->number == number)
+		if (vm->players[i]->number == inst->params[0])
 		{
 			ft_printf("The player $%s ($%#x) is in life !",
-					player[i]->header.prog_name, number);
-			++(player[i]->nb_live);
-			// incrementer last_live
+					vm->players[i]->header.prog_name, inst->params[0]);
+			++(vm->players[i]->nb_live);
+			vm->players[i]->last_live = proc->cycles;
 			return ;
 		}
 		++i;
 	}
-	ft_printf("The player $UnknownPlayer ($%#x) is in life !", number);
+	ft_printf("The player $UnknownPlayer ($%#x) is in life !", inst->params[0]);
 }

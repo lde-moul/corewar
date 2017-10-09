@@ -12,8 +12,8 @@
 
 #include "corewar.h"
 
-void	zjmp(short jump, int *pc, int carry)
+void	zjmp(t_vm *vm, t_proc *proc, t_instruction *inst)
 {
-	if (carry == 1)
-		*pc = (*pc + jump) % MEM_SIZE;
+	if (proc->carry == 1)
+		proc->pc = (proc->pc + inst->params[0]) % MEM_SIZE;
 }

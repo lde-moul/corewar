@@ -82,19 +82,33 @@ int				four_octets_to_int(char ram[MEM_SIZE], int pc);
 ** Instructions
 */
 
-void			direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			add(int	r1, int r2, int *r3, int *carry);
-void			direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			live(int number, t_player *player[MAX_PLAYERS]);
-void			add(int	r1, int r2, int *r3, int *carry);
-void			sub(int r1, int r2, int *r3, int *carry);
-void			and(int param_a, int param_b, int *reg, int *carry);
-void			or(int param_a, int param_b, int *reg, int *carry);
-void			xor(int param_a, int param_b, int *reg, int *carry);
-void			zjmp(short jump, int *pc, int carry);
+short			two_octets_to_short(char ram[MEM_SIZE], int pc);
+int				four_octets_to_int(char ram[MEM_SIZE], int pc);
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
 
+void			add(t_proc *proc, t_instruction *inst);
+void			sub(t_proc *proc, t_instruction *inst);
+
+void			cor_and(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			cor_or(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			cor_xor(t_vm *vm, t_proc *proc, t_instruction *inst);
+
+void			direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_indirect_store(t_vm *vm, t_proc *proc,
+		t_instruction *inst);
+
+void			live(int number, t_player *player[MAX_PLAYERS]);
+void			zjmp(t_vm *vm, t_proc *proc, t_instruction *inst);
+
+t_proc			*fork(t_proc *src, t_instruction *inst);
+t_proc			*lfork(t_proc *src, t_instruction *inst);
+
+void			aff(t_proc *proc, t_instruction *inst);
 #endif
