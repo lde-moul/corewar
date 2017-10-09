@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:09 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/06 18:36:06 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/09 16:54:33 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		load_player(t_player *p, const char *name)
 	p->header.comment[COMMENT_LENGTH] = '\0';
 	if (p->header.prog_size > CHAMP_MAX_SIZE)
 		error("\"%s\" is too long\n", name);
-	if (read(file, p->prog, p->header.prog_size) != p->header.prog_size)
-		error("\"%s\" is too long\n", name);
+	if (read(file, p->prog, p->header.prog_size + 1) != p->header.prog_size)
+		error("\"%s\" is corrupted\n", name);
 	close(file);
 }
