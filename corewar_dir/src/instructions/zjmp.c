@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   zjmp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/02 17:18:10 by lde-moul         ###   ########.fr       */
+/*   Created: 2017/10/02 16:44:11 by afourcad          #+#    #+#             */
+/*   Updated: 2017/10/02 18:08:06 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	main(int argc, char **argv)
+void	zjmp(t_vm *vm, t_proc *proc, t_instruction *inst)
 {
-	t_vm	vm;
-
-	parse(argc, argv, &vm);
-	init_vm(&vm);
-	handle_main_loop(&vm);
-	return (0);
+	if (proc->carry == 1)
+		proc->pc = (proc->pc + inst->params[0]) % MEM_SIZE;
 }

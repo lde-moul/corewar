@@ -6,59 +6,110 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/09/28 17:35:58 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/09 19:05:43 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_H
 # define COREWAR_H
 
-#include "../../ft_printf/ft_printf.h"
-#include "../op/op.h"
-#include <fcntl.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <sys/time.h>
+# include "../../ft_printf/ft_printf.h"
+# include "../../op/op.h"
+# include <fcntl.h>
+# include <sys/types.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <errno.h>
+# include <sys/time.h>
 
 typedef struct	s_player
 {
 	int				number;
+	unsigned char	prog[CHAMP_MAX_SIZE];
 	t_header		header;
-}					t_player;
+	int				last_live;
+	int				nb_live;
+}				t_player;
 
 typedef struct	s_instruction
 {
-	int				name;
+	int				opcode;
+	int				id;
 	int				ocp;
-	int				p[3];
-}					t_instruction;
+	t_arg_type		param_types[3];
+	int				params[3];
+}				t_instruction;
 
 typedef struct	s_proc
 {
 	int				r[REG_NUMBER];
 	int				pc;
-	int				carry;
-	int				id;
-	int				nb_cycles;
+	char			carry;
+	// int			id; // Unused?
+	int				cycles;
 	int				last_live;
-	t_instruction	inst;
-}					t_proc;
+	char			opcode;
+	struct s_proc	*next;
+}				t_proc;
 
 typedef struct	s_vm
 {
 	char			ram[MEM_SIZE];
-	// t_proc		*processes;
+	t_proc			*processes;
 	int				num_players;
 	t_player		players[MAX_PLAYERS];
 	int				dump_cycles;
 }				t_vm;
 
-int				parse(int argc, char **argv, t_vm *vm);
-int				load_player(t_player *player, const char *name);
+void			init_vm(t_vm *vm);
+void			handle_main_loop(t_vm *vm);
+
+void			create_process(t_vm *vm, int pc, int player_number);
+void			kill_process(t_proc *process, t_vm *vm);
+void			execute_instruction(t_proc *process, t_vm *vm);
+
+void			parse(int argc, char **argv, t_vm *vm);
+void			load_player(t_player *p, const char *name);
 
 int				swap_int(int n);
-int				swap_short(short n);
+unsigned int	swap_uint(unsigned int n);
+short			swap_short(short n);
 
+short			two_octets_to_short(char ram[MEM_SIZE], int pc);
+int				four_octets_to_int(char ram[MEM_SIZE], int pc);
+
+/*
+** Instructions
+*/
+
+short			two_octets_to_short(char ram[MEM_SIZE], int pc);
+int				four_octets_to_int(char ram[MEM_SIZE], int pc);
+
+void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
+
+void			add(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			sub(t_vm *vm, t_proc *proc, t_instruction *inst);
+
+void			cor_and(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			cor_or(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			cor_xor(t_vm *vm, t_proc *proc, t_instruction *inst);
+
+void			direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_indirect_store(t_vm *vm, t_proc *proc,
+		t_instruction *inst);
+
+void			live(int number, t_player *player[MAX_PLAYERS]);
+void			zjmp(t_vm *vm, t_proc *proc, t_instruction *inst);
+
+void			cor_fork(t_vm *vm, t_proc *src, t_instruction *inst);
+void			cor_lfork(t_vm *vm, t_proc *src, t_instruction *inst);
+
+void			aff(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			afficher(t_vm *vm);
 #endif

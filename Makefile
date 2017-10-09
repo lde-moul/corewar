@@ -6,9 +6,8 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/09/28 19:00:50 by lde-moul         ###   ########.fr        #
+#    Updated: 2017/10/09 19:05:27 by afourcad         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
 # **************************************************************************** #
 
 NAME_1 = asm
@@ -17,11 +16,29 @@ NAME_2 = corewar
 SRC_PATH_1 = asm_dir/src
 SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c
 
-SRC_PATH_2 = corewar_dir/src/
-SRC_NAME_2 = main.c\
+SRC_PATH_2 = corewar_dir/src
+SRC_NAME_2 = ../../op/op.c\
+			 main.c\
+			 init.c\
+			 loop.c\
+			 process.c\
+			 execute_instruction.c\
+			 op_functions.c\
 			 swap.c\
 			 parser/parser.c\
 			 parser/load_player.c\
+			 instructions/live.c\
+			 instructions/direct_load.c\
+			 instructions/direct_store.c\
+			 instructions/aritmetical.c\
+			 instructions/fork.c\
+			 instructions/indirect_load.c\
+			 instructions/indirect_store.c\
+			 instructions/logical.c\
+			 instructions/zjmp.c\
+			 instructions/two_octet_to_short.c\
+			 instructions/four_octets_to_int.c\
+			 ncurse/afficher.c
 
 OBJ_PATH_1 = asm_dir/obj
 OBJ_NAME_1 = $(SRC_NAME_1:.c=.o)
@@ -32,7 +49,7 @@ OBJ_NAME_2 = $(SRC_NAME_2:.c=.o)
 CC = clang
 CFLAGS = -g -Wall -Werror -Wextra
 
-CPPFLAGS = -I includes -I ft_printf/includes
+CPPFLAGS = -I corewar_dir/src -I includes -I ft_printf/includes
 
 LDFLAGS = -L ft_printf
 LDLIBS = -lftprintf
@@ -68,6 +85,7 @@ $(OBJ_PATH_2)/%.o: $(SRC_PATH_2)/%.c
 	@printf "\033[31;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH_2) 2> /dev/null || true
 	@mkdir $(OBJ_PATH_2)/parser 2> /dev/null || true
+	@mkdir $(OBJ_PATH_2)/instructions 2> /dev/null || true
 	@$(CC) $(CFLAGS) -c $< $(CPPFLAGS) -o $@
 
 clean:

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   four_octets_to_int.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/02 17:18:10 by lde-moul         ###   ########.fr       */
+/*   Created: 2017/10/02 18:45:56 by afourcad          #+#    #+#             */
+/*   Updated: 2017/10/02 18:49:52 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	main(int argc, char **argv)
+int	four_octets_to_int(char ram[MEM_SIZE], int pc)
 {
-	t_vm	vm;
+	char	tab[4];
 
-	parse(argc, argv, &vm);
-	init_vm(&vm);
-	handle_main_loop(&vm);
-	return (0);
+	tab[0] = ram[(pc + 3) % MEM_SIZE];
+	tab[1] = ram[(pc + 2) % MEM_SIZE];
+	tab[2] = ram[(pc + 1) % MEM_SIZE];
+	tab[3] = ram[pc];
+	return (*((int*)tab));
 }

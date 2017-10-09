@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   op_functions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/02 17:18:10 by lde-moul         ###   ########.fr       */
+/*   Created: 2017/10/06 17:27:01 by lde-moul          #+#    #+#             */
+/*   Updated: 2017/10/06 17:29:58 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	main(int argc, char **argv)
+void	(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*) =
 {
-	t_vm	vm;
-
-	parse(argc, argv, &vm);
-	init_vm(&vm);
-	handle_main_loop(&vm);
-	return (0);
-}
+	NULL,
+	direct_load,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	long_direct_load,
+	NULL,
+	NULL,
+	NULL
+};

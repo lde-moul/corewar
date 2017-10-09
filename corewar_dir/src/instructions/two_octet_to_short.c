@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   two_octet_to_short.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/02 17:18:10 by lde-moul         ###   ########.fr       */
+/*   Created: 2017/10/02 18:09:19 by afourcad          #+#    #+#             */
+/*   Updated: 2017/10/02 18:44:45 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	main(int argc, char **argv)
+short	two_octets_to_short(char ram[MEM_SIZE], int pc)
 {
-	t_vm	vm;
+	char	tab[2];
 
-	parse(argc, argv, &vm);
-	init_vm(&vm);
-	handle_main_loop(&vm);
-	return (0);
+	tab[0] = ram[(pc + 1) % MEM_SIZE];
+	tab[1] = ram[pc];
+	return (*((short*)tab));
 }
