@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/06 17:25:31 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/10 15:12:02 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct	s_player
 typedef struct	s_instruction
 {
 	int				opcode;
-	int				id;
 	int				ocp;
 	t_arg_type		param_types[3];
 	int				params[3];
@@ -64,7 +63,7 @@ typedef struct	s_vm
 void			init_vm(t_vm *vm);
 void			handle_main_loop(t_vm *vm);
 
-void			create_process(t_vm *vm, int pc, int player_number);
+void			create_process(t_vm *vm, int pc, int player_num, int no_init);
 void			kill_process(t_proc *process, t_vm *vm);
 void			execute_instruction(t_proc *process, t_vm *vm);
 

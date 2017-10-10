@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/06 19:39:26 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/10 15:39:29 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void print_instruction_info(t_instruction *inst)
 
 static void	ocp_to_param_types(t_arg_type param_types[3], unsigned char ocp)
 {
+	// !!! Check if the ocp is not allowed
 	param_types[0] = ocp >> 6;
 	param_types[1] = (ocp >> 4) & 3;
 	param_types[2] = (ocp >> 2) & 3;
@@ -101,29 +102,30 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	t_instruction	inst;
 	int				pc;
 
-	// !!! Check for invalid opcode. How do we handle them? By killing the proc?
+	// !!! Check for invalid register/ocp/whatever.
 	// !!! Check if the ocp is not allowed for this instruction?
 	pc = proc->pc;
 	printf("Executing instruction at %d\n", pc);
 	inst.opcode = proc->opcode;
-	inst.id = inst.opcode - 1;
 	pc = (pc + 1) % MEM_SIZE;
-	if (op_tab[inst.id].ocp)
+	if (process->opcode < 1 || process->opcode > 16)
+		return ;
+	if (op_tab[inst.opcode - 1].ocp)
 	{
 		inst.ocp = vm->ram[pc];
 		pc = (pc + 1) % MEM_SIZE;
 		ocp_to_param_types(inst.param_types, inst.ocp);
 	}
 	else
-		tab_to_param_types(inst.param_types, op_tab[inst.id].arg);
+		tab_to_param_types(inst.param_types, op_tab[inst.opcode - 1].arg);
 	read_param(&inst, 0, vm->ram, &pc);
 	read_param(&inst, 1, vm->ram, &pc);
 	read_param(&inst, 2, vm->ram, &pc);
 	print_instruction_info(&inst);
 	printf("r2 = %d\n", proc->r[2]);
 	// !!!
-	if (g_op_functions[inst.id])
-		g_op_functions[inst.id](vm, proc, &inst);
+	if (g_op_functions[inst.opcode - 1])
+		g_op_functions[inst.opcode - 1](vm, proc, &inst);
 	else
 		printf("Instruction %d has no matching function", inst.opcode);
 	printf("r2 = %d\n", proc->r[2]);
