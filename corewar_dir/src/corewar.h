@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/11 16:30:43 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:09:37 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct	s_proc
 
 typedef struct	s_vm
 {
-	char			ram[MEM_SIZE];
+	unsigned char	ram[MEM_SIZE];
 	t_proc			*processes;
 	int				num_players;
 	t_player		players[MAX_PLAYERS];
@@ -75,15 +75,13 @@ int				swap_int(int n);
 unsigned int	swap_uint(unsigned int n);
 short			swap_short(short n);
 
-short			two_octets_to_short(char ram[MEM_SIZE], int pc);
-int				four_octets_to_int(char ram[MEM_SIZE], int pc);
 
 /*
 ** Instructions
 */
 
-short			two_octets_to_short(char ram[MEM_SIZE], int pc);
-int				four_octets_to_int(char ram[MEM_SIZE], int pc);
+short			two_octets_to_short(unsigned char ram[MEM_SIZE], int pc);
+int				four_octets_to_int(unsigned char ram[MEM_SIZE], int pc);
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
 
@@ -104,13 +102,13 @@ void			indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			long_indirect_store(t_vm *vm, t_proc *proc,
 		t_instruction *inst);
 
-void			live(int number, t_player *player[MAX_PLAYERS]);
+void			live(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			zjmp(t_vm *vm, t_proc *proc, t_instruction *inst);
 
 void			cor_fork(t_vm *vm, t_proc *src, t_instruction *inst);
 void			cor_lfork(t_vm *vm, t_proc *src, t_instruction *inst);
 
 void			aff(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			afficher(t_vm *vm);
+void			display_ram(t_vm *vm);
 
 #endif

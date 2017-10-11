@@ -6,13 +6,13 @@
 /*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/09 19:06:25 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:11:15 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <ncurses.h>
 #include "corewar.h"
 
-void	afficher(t_vm *vm)
+void	display_ram(t_vm *vm)
 {
 	WINDOW *boite;
 	int	i = 1;
@@ -27,7 +27,7 @@ void	afficher(t_vm *vm)
 		move(i, 2);
 		while (j < 193)
 		{
-			printw("%.2x ", vm->r[pc]);
+			printw("%.2x ", vm->ram[pc]);
 			++pc;
 			j += 3;
 		}

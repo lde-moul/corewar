@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/11 16:29:20 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:01:24 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ static void	tab_to_param_types(char param_types[3], char arg[3])
 		param_types[2] = IND_CODE;
 }
 
-static void	read_param(t_instruction *inst, int n, char ram[MEM_SIZE], int *pc)
+static void	read_param(t_instruction *inst, int n,
+		unsigned char ram[MEM_SIZE], int *pc)
 {
 	if (!inst->param_types[n])
 		return ;

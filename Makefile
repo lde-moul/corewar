@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/11 16:23:07 by afourcad         ###   ########.fr        #
+#    Updated: 2017/10/11 16:52:37 by afourcad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ CFLAGS = -g -Wall -Werror -Wextra
 CPPFLAGS = -I corewar_dir/src -I includes -I ft_printf/includes
 
 LDFLAGS = -L ft_printf
-LDLIBS = -lftprintf
+LDLIBS = -lftprintf -lncurses
 LIB = ft_printf/libftprintf.a
 
 SRC_1 = $(addprefix $(SRC_PATH_1)/,$(SRC_NAME_1))
@@ -90,6 +90,7 @@ $(OBJ_PATH_2)/%.o: $(SRC_PATH_2)/%.c
 	@mkdir $(OBJ_PATH_2) 2> /dev/null || true
 	@mkdir $(OBJ_PATH_2)/parser 2> /dev/null || true
 	@mkdir $(OBJ_PATH_2)/instructions 2> /dev/null || true
+	@mkdir $(OBJ_PATH_2)/ncurse 2> /dev/null || true
 	@$(CC) $(CFLAGS) -c $< $(CPPFLAGS) -o $@
 
 clean:
