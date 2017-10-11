@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/10 17:32:48 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:20:59 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ void			cor_lfork(t_vm *vm, t_proc *src, t_instruction *inst);
 
 void			aff(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			afficher(t_vm *vm);
+
 #endif

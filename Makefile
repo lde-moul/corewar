@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/09 19:19:58 by gdelabro         ###   ########.fr        #
+#    Updated: 2017/10/11 16:23:07 by afourcad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,17 +19,15 @@ SRC_NAME_1 = ../../op/op.c main.c error.c pars_info.c split_file.c aff_struct.c\
 			test_arg_label.c write_arg.c free_struct.c
 
 SRC_PATH_2 = corewar_dir/src
-<<<<<<< HEAD
-SRC_NAME_2 = ../../op/op.c\
+
+SRC_NAME_2 = main.c\
+			../../op/op.c\
 			 main.c\
 			 init.c\
 			 loop.c\
 			 process.c\
 			 execute_instruction.c\
 			 op_functions.c\
-=======
-SRC_NAME_2 = main.c\
->>>>>>> gdelabro
 			 swap.c\
 			 parser/parser.c\
 			 parser/load_player.c\

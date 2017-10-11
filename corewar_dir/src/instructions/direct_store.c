@@ -6,7 +6,7 @@
 /*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/05 19:28:21 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:18:17 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "corewar.h"
@@ -30,6 +30,7 @@ void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 	else
 		proc->r[inst->params[1]] = proc->r[inst->params[0]];
 	proc->carry = inst->params[0] == 0 ? 1 : 0;
+	afficher(vm);
 }
 
 void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
@@ -51,4 +52,5 @@ void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 	else
 		proc->r[inst->params[1]] = proc->r[inst->params[0]];
 	proc->carry = inst->params[0] == 0 ? 1 : 0;
+	afficher(vm);
 }
