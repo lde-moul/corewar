@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/10 15:39:29 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:29:20 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char *sub_ocp(char sub_ocp)
 // !!!
 static void print_instruction_info(t_instruction *inst)
 {
-	printf("Opcode: %s (%d)\n", op_tab[inst->id].name, inst->opcode);
+	printf("Opcode: %s (%d)\n", op_tab[inst->opcode - 1].name, inst->opcode);
 	// print_ocp(inst->ocp);
 
 	printf("Param 1: %8s, %d\n", sub_ocp(inst->param_types[0]), inst->params[0]);
@@ -83,9 +83,11 @@ static void	read_param(t_instruction *inst, int n, char ram[MEM_SIZE], int *pc)
 	if (inst->param_types[n] == REG_CODE)
 	{
 		inst->params[n] = ram[*pc]; // !!! Check invalid register number
+		if (inst->params[n] < 1 || inst->params[n] > REG_NUMBER)
+			inst->invalid = 1;
 		*pc = (*pc + 1) % MEM_SIZE;
 	}
-	else if (inst->param_types[n] == IND_CODE || op_tab[inst->id].d2)
+	else if (inst->param_types[n] == IND_CODE || op_tab[inst->opcode - 1].d2)
 	{
 		inst->params[n] = two_octets_to_short(ram, *pc);
 		*pc = (*pc + 2) % MEM_SIZE;
@@ -108,8 +110,9 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	printf("Executing instruction at %d\n", pc);
 	inst.opcode = proc->opcode;
 	pc = (pc + 1) % MEM_SIZE;
-	if (process->opcode < 1 || process->opcode > 16)
+	if (proc->opcode < 1 || proc->opcode > 16)
 		return ;
+	inst.invalid = 0;
 	if (op_tab[inst.opcode - 1].ocp)
 	{
 		inst.ocp = vm->ram[pc];

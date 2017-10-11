@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/11 16:20:59 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:30:43 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_instruction
 	int				ocp;
 	t_arg_type		param_types[3];
 	int				params[3];
+	int				invalid;
 }				t_instruction;
 
 typedef struct	s_proc
