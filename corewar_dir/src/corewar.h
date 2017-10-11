@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/11 17:09:37 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:28:38 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <errno.h>
 # include <sys/time.h>
+# include <ncurses.h>
 
 typedef struct	s_player
 {
@@ -61,6 +62,8 @@ typedef struct	s_vm
 	int				dump_cycles;
 }				t_vm;
 
+void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
+
 void			init_vm(t_vm *vm);
 void			handle_main_loop(t_vm *vm);
 
@@ -75,15 +78,15 @@ int				swap_int(int n);
 unsigned int	swap_uint(unsigned int n);
 short			swap_short(short n);
 
+short			two_octets_to_short(unsigned char ram[MEM_SIZE], int pc);
+int				four_octets_to_int(unsigned char ram[MEM_SIZE], int pc);
+
+void			init_ncurses(t_vm *vm);
+void			display_ram(t_vm *vm);
 
 /*
 ** Instructions
 */
-
-short			two_octets_to_short(unsigned char ram[MEM_SIZE], int pc);
-int				four_octets_to_int(unsigned char ram[MEM_SIZE], int pc);
-
-void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
 
 void			add(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			sub(t_vm *vm, t_proc *proc, t_instruction *inst);
@@ -109,6 +112,5 @@ void			cor_fork(t_vm *vm, t_proc *src, t_instruction *inst);
 void			cor_lfork(t_vm *vm, t_proc *src, t_instruction *inst);
 
 void			aff(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			display_ram(t_vm *vm);
 
 #endif
