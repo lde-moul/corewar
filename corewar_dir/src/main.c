@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/11 17:17:25 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 18:26:16 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ int	main(int argc, char **argv)
 	init_ncurses(&vm);
 	display_ram(&vm);
 	handle_main_loop(&vm);
+//	getch();
+	endwin();
 	return (0);
 }

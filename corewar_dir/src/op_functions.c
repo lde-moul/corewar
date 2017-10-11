@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 17:27:01 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/06 17:29:58 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:44:26 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*) =
 {
-	NULL,
+	live,
 	direct_load,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	direct_store,
+	add,
+	sub,
+	cor_and,
+	cor_or,
+	cor_xor,
+	zjmp,
+	indirect_load,
+	indirect_store,
+	cor_fork,
 	long_direct_load,
-	NULL,
-	NULL,
-	NULL
+	long_indirect_load,
+	cor_lfork,
+	aff,
 };

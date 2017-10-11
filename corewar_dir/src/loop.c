@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/06 18:45:50 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:56:33 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		handle_main_loop(t_vm *vm)
 	int	i;
 
 	i = 0;
-	while (i < 30)
+	while (i < 10000)
 	{
 		handle_processes(vm);
 		i++;

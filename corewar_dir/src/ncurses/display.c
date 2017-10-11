@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/11 17:27:39 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 18:26:39 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ void	display_ram(t_vm *vm)
 	}
 	refresh();
 	getch();
-	endwin();
-	free(boite);
+//	free(boite);
 }

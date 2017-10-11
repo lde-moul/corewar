@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/11 17:28:38 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:43:28 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_indirect_store(t_vm *vm, t_proc *proc,
-		t_instruction *inst);
 
 void			live(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			zjmp(t_vm *vm, t_proc *proc, t_instruction *inst);

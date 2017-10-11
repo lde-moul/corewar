@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/11 17:01:24 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/11 18:27:36 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,17 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	// !!! Check for invalid register/ocp/whatever.
 	// !!! Check if the ocp is not allowed for this instruction?
 	pc = proc->pc;
-	printf("Executing instruction at %d\n", pc);
+	//printf("Executing instruction at %d\n", pc);
 	inst.opcode = proc->opcode;
 	pc = (pc + 1) % MEM_SIZE;
-	if (proc->opcode < 1 || proc->opcode > 16)
+	if (inst.opcode < 1 || inst.opcode > 16)
+	{
+		proc->pc = (proc->pc + 1) % MEM_SIZE;
+		proc->opcode = vm->ram[pc];
+		proc->cycles = proc->opcode > 0 && proc->opcode <= 16 ?
+			op_tab[(int)proc->opcode - 1].cycles : 1;
 		return ;
+	}
 	inst.invalid = 0;
 	if (op_tab[inst.opcode - 1].ocp)
 	{
@@ -125,14 +131,14 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	read_param(&inst, 0, vm->ram, &pc);
 	read_param(&inst, 1, vm->ram, &pc);
 	read_param(&inst, 2, vm->ram, &pc);
-	print_instruction_info(&inst);
-	printf("r2 = %d\n", proc->r[2]);
+	//print_instruction_info(&inst);
+	//printf("r2 = %d\n", proc->r[2]);
 	// !!!
-	if (g_op_functions[inst.opcode - 1])
-		g_op_functions[inst.opcode - 1](vm, proc, &inst);
-	else
-		printf("Instruction %d has no matching function", inst.opcode);
-	printf("r2 = %d\n", proc->r[2]);
+	g_op_functions[inst.opcode - 1](vm, proc, &inst);
+	//printf("r2 = %d\n", proc->r[2]);
 	if (inst.opcode != 9)
 		proc->pc = pc;
+	proc->opcode = vm->ram[pc];
+	proc->cycles = proc->opcode > 0 && proc->opcode <= 16 ?
+		op_tab[(int)proc->opcode - 1].cycles : 1;
 }
