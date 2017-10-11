@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/11 16:52:37 by afourcad         ###   ########.fr        #
+#    Updated: 2017/10/11 17:20:28 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC_NAME_2 = main.c\
 			 instructions/two_octet_to_short.c\
 			 instructions/four_octets_to_int.c\
 			 ncurse/afficher.c
+			 ncurse/init.c
 
 OBJ_PATH_1 = asm_dir/obj
 OBJ_NAME_1 = $(SRC_NAME_1:.c=.o)

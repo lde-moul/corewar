@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   afficher.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/11 17:11:15 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:18:07 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <ncurses.h>
+
 #include "corewar.h"
 
 void	display_ram(t_vm *vm)
@@ -20,7 +20,7 @@ void	display_ram(t_vm *vm)
 	int	pc = 0;
 
 	initscr();
-	boite= subwin(stdscr, 66, 195, 0, 0);
+	boite = subwin(stdscr, 66, 195, 0, 0);
 	box(boite, ACS_VLINE, ACS_HLINE);
 	while (i < 65)
 	{
