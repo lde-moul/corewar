@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/12 17:06:56 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/12 18:51:32 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_proc
 typedef struct	s_vm
 {
 	unsigned char	ram[MEM_SIZE];
+	unsigned char	ram_color[MEM_SIZE];
 	t_proc			*processes;
 	int				num_players;
 	t_player		players[MAX_PLAYERS];

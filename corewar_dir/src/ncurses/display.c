@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/11 18:26:39 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/12 18:42:03 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	display_ram(t_vm *vm)
 	int	i = 1;
 	int	j = 2;
 	int	pc = 0;
-
-	initscr();
+	
 	boite = subwin(stdscr, 66, 195, 0, 0);
 	box(boite, ACS_VLINE, ACS_HLINE);
 	while (i < 65)
@@ -27,7 +26,9 @@ void	display_ram(t_vm *vm)
 		move(i, 2);
 		while (j < 193)
 		{
+			attron(COLOR_PAIR(vm->ram_color[pc]));
 			printw("%.2x ", vm->ram[pc]);
+			attroff(COLOR_PAIR(vm->ram_color[pc]));
 			++pc;
 			j += 3;
 		}
@@ -35,6 +36,5 @@ void	display_ram(t_vm *vm)
 		j = 2;
 	}
 	refresh();
-	getch();
 //	free(boite);
 }
