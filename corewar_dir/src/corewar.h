@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/11 17:43:28 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/12 17:06:56 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void			handle_main_loop(t_vm *vm);
 void			create_process(t_vm *vm, int pc, int player_num, int no_init);
 void			kill_process(t_proc *process, t_vm *vm);
 void			execute_instruction(t_proc *process, t_vm *vm);
+void			pre_execute_instruction(t_proc *process, t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);

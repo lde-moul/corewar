@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:56:20 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/10 15:06:20 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/12 16:58:55 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	create_process(t_vm *vm, int pc, int player_num, int no_init)
 	process->next = vm->processes;
 	vm->processes = process;
 	process->pc = pc;
-	process->opcode = vm->ram[pc];
-	process->cycles = process->opcode > 0 && process->opcode <= 16 ?
-		op_tab[(int)process->opcode - 1].cycles : 1;
+	pre_execute_instruction(process, vm);
 	process->last_live = 0; // !!!
 	if (no_init)
 		return ;

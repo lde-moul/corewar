@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/12 16:24:44 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/12 18:05:10 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,16 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	t_instruction	inst;
 	int				pc;
 
-	// !!! Check for invalid register/ocp/whatever.
 	// !!! Check if the ocp is not allowed for this instruction?
-	pc = proc->pc;
-	//printf("Executing instruction at %d\n", pc);
-	inst.opcode = proc->opcode;
-	pc = (pc + 1) % MEM_SIZE;
+	inst.opcode = inst.opcode;
 	if (inst.opcode < 1 || inst.opcode > 16)
 	{
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
-		proc->opcode = vm->ram[pc];
-		proc->cycles = proc->opcode > 0 && proc->opcode <= 16 ?
-			op_tab[(int)proc->opcode - 1].cycles : 1;
+		pre_execute_instruction(proc, vm);
 		return ;
 	}
+	//printf("Executing instruction at %d\n", proc->pc);
+	pc = (proc->pc + 1) % MEM_SIZE;
 	inst.invalid = 0;
 	if (op_tab[inst.opcode - 1].ocp)
 	{
@@ -132,13 +128,16 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	read_param(&inst, 1, vm->ram, &pc);
 	read_param(&inst, 2, vm->ram, &pc);
 	//print_instruction_info(&inst);
-	//printf("r2 = %d\n", proc->r[2]);
-	// !!!
-	g_op_functions[inst.opcode - 1](vm, proc, &inst);
-	//printf("r2 = %d\n", proc->r[2]);
-	if (inst.opcode != 9)
+	if (!inst.invalid)
+		g_op_functions[inst.opcode - 1](vm, proc, &inst);
+	if (inst.opcode != 9 || inst.invalid)
 		proc->pc = pc;
-	proc->opcode = vm->ram[pc];
+	pre_execute_instruction(proc, vm);
+}
+
+void	pre_execute_instruction(t_proc *proc, t_vm *vm)
+{
+	proc->opcode = vm->ram[proc->pc];
 	proc->cycles = proc->opcode > 0 && proc->opcode <= 16 ?
 		op_tab[(int)proc->opcode - 1].cycles : 1;
 }
