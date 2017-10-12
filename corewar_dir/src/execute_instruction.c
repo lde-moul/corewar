@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/12 18:05:10 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/12 19:15:44 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	int				pc;
 
 	// !!! Check if the ocp is not allowed for this instruction?
-	inst.opcode = inst.opcode;
+	inst.opcode = proc->opcode;
 	if (inst.opcode < 1 || inst.opcode > 16)
 	{
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
