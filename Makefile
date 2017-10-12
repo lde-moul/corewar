@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/11 17:45:41 by afourcad         ###   ########.fr        #
+#    Updated: 2017/10/12 16:23:23 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ OBJ_1 = $(addprefix $(OBJ_PATH_1)/,$(OBJ_NAME_1))
 SRC_2 = $(addprefix $(SRC_PATH_2)/,$(SRC_NAME_2))
 OBJ_2 = $(addprefix $(OBJ_PATH_2)/,$(OBJ_NAME_2))
 
-all: $(LIB) $(NAME_1) #$(NAME_2)
+all: $(LIB) $(NAME_1) $(NAME_2)
 
 $(LIB):
 	@make -C ft_printf
