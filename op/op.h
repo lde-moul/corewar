@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2017/10/09 19:18:36 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/12 16:18:31 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef	struct					s_op
 	char	*name;
 	int		nb_param;
 	char	arg[3];
-	int		opcode;
+	int		id;
 	int		cycles;
 	char	*action;
 	int		ocp;
