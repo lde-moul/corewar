@@ -6,24 +6,24 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/11 18:27:36 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/12 16:24:44 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
 // !!!
-static char *sub_ocp(char sub_ocp)
-{
-	switch (sub_ocp)
-	{
-		case 0: return "none"; break ;
-		case REG_CODE: return "register"; break ;
-		case DIR_CODE: return "direct"; break ;
-		case IND_CODE: return "index"; break ;
-		default: return "invalid"; break ;
-	}
-}
+// static char *sub_ocp(char sub_ocp)
+// {
+// 	switch (sub_ocp)
+// 	{
+// 		case 0: return "none"; break ;
+// 		case REG_CODE: return "register"; break ;
+// 		case DIR_CODE: return "direct"; break ;
+// 		case IND_CODE: return "index"; break ;
+// 		default: return "invalid"; break ;
+// 	}
+// }
 
 // !!!
 // static void print_ocp(char ocp)
@@ -34,17 +34,17 @@ static char *sub_ocp(char sub_ocp)
 // }
 
 // !!!
-static void print_instruction_info(t_instruction *inst)
-{
-	printf("Opcode: %s (%d)\n", op_tab[inst->opcode - 1].name, inst->opcode);
-	// print_ocp(inst->ocp);
-
-	printf("Param 1: %8s, %d\n", sub_ocp(inst->param_types[0]), inst->params[0]);
-	if (inst->param_types[1])
-		printf("Param 2: %8s, %d\n", sub_ocp(inst->param_types[1]), inst->params[1]);
-	if (inst->param_types[2])
-		printf("Param 3: %8s, %d\n", sub_ocp(inst->param_types[2]), inst->params[2]);
-}
+// static void print_instruction_info(t_instruction *inst)
+// {
+// 	printf("Opcode: %s (%d)\n", op_tab[inst->opcode - 1].name, inst->opcode);
+// 	// print_ocp(inst->ocp);
+//
+// 	printf("Param 1: %8s, %d\n", sub_ocp(inst->param_types[0]), inst->params[0]);
+// 	if (inst->param_types[1])
+// 		printf("Param 2: %8s, %d\n", sub_ocp(inst->param_types[1]), inst->params[1]);
+// 	if (inst->param_types[2])
+// 		printf("Param 3: %8s, %d\n", sub_ocp(inst->param_types[2]), inst->params[2]);
+// }
 
 static void	ocp_to_param_types(t_arg_type param_types[3], unsigned char ocp)
 {
