@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/12 16:37:25 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/12 19:12:32 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void		handle_main_loop(t_vm *vm)
 	while (i < 10000)
 	{
 		handle_processes(vm);
+		display_ram(vm);
 		getch();
 		i++;
 	}
