@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 18:07:31 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/09 18:44:56 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/16 19:43:07 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void	ft_exit(int err)
 	err == 8 ? ft_printf("error not found\n") : 0;
 	err == 9 ? ft_printf("bad type of param found\n") : 0;
 	err == 11 ? ft_printf("can't create new file\n") : 0;
+	err == 12 ? ft_printf("empty code\n") : 0;
 	exit(-1);
 }

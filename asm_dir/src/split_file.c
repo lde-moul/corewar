@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:30:02 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/09 18:45:16 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/16 19:42:35 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	split_file(t_asm *e, int i2)
 		if (is_empty_line(e, i))
 			while (e->file[i] && e->file[i] != '\n')
 				e->file[i++] = '\n';
-	!(e->split = ft_strsplit(e->file, '\n')) ? ft_exit(2) : 0;
+	!(e->split = ft_strsplit(e->file, '\n')) ? ft_exit(12) : 0;
 }
