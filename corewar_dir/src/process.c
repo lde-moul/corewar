@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:56:20 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/12 16:58:55 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/16 19:25:24 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,19 @@ void	create_process(t_vm *vm, int pc, int player_num, int no_init)
 	vm->processes = process;
 	process->pc = pc;
 	pre_execute_instruction(process, vm);
-	process->last_live = 0; // !!!
 	if (no_init)
 		return ;
 	process->r[0] = player_num;
 	bzero(&process->r[1], (REG_NUMBER - 1) * sizeof(int));
 	process->carry = 0;
+	process->alive = 0;
 }
 
 void	kill_process(t_proc *process, t_vm *vm)
 {
 	t_proc	**prev_next;
 
+	ft_printf("RIP\n");
 	// !!! Optimisation: store previous process to avoid iterating through all processes?
 	prev_next = &vm->processes;
 	while (*prev_next != process)
