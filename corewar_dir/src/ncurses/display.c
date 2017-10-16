@@ -6,11 +6,27 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/12 18:42:03 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/16 20:21:33 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+
+void	display_pc(t_vm *vm)
+{
+	t_proc *proc;
+
+	proc = vm->processes;
+	while (proc)
+	{
+		attron(COLOR_PAIR(vm->ram_color[proc->pc] + 5));
+		mvprintw(proc->pc / 64 + 1, proc->pc % 64 * 3 + 2, "%.2x", vm->ram[proc->pc]);
+		attroff(COLOR_PAIR(vm->ram_color[proc->pc] + 5));
+		mvprintw(proc->pc / 64 + 1, proc->pc % 64 * 3 + 4, " ");
+		proc = proc->next;
+	}
+}
 
 void	display_ram(t_vm *vm)
 {
@@ -35,6 +51,8 @@ void	display_ram(t_vm *vm)
 		++i;
 		j = 2;
 	}
+	display_pc(vm);
+	curs_set(0);
 	refresh();
-//	free(boite);
+	free(boite);
 }
