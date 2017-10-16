@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/12 16:33:28 by afourcad         ###   ########.fr        #
+#    Updated: 2017/10/16 18:27:43 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_NAME_2 = main.c\
 			 loop.c\
 			 process.c\
 			 execute_instruction.c\
+			 check.c\
 			 op_functions.c\
 			 swap.c\
 			 parser/parser.c\

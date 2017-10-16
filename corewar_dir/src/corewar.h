@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/12 18:51:32 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/16 19:02:37 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct	s_player
 	int				number;
 	unsigned char	prog[CHAMP_MAX_SIZE];
 	t_header		header;
-	int				last_live;
 	int				nb_live;
+	int				last_live;
 }				t_player;
 
 typedef struct	s_instruction
@@ -48,7 +48,8 @@ typedef struct	s_proc
 	char			carry;
 	// int			id; // Unused?
 	int				cycles;
-	int				last_live;
+	int				lives;
+	int				alive;
 	char			opcode;
 	struct s_proc	*next;
 }				t_proc;
@@ -60,7 +61,12 @@ typedef struct	s_vm
 	t_proc			*processes;
 	int				num_players;
 	t_player		players[MAX_PLAYERS];
-	int				dump_cycles;
+	int				cycle_to_die;
+	int				num_lives;
+	int				check_cycles;
+	int				checks;
+	int				cycle;
+	int				dump_cycle;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
@@ -72,6 +78,8 @@ void			create_process(t_vm *vm, int pc, int player_num, int no_init);
 void			kill_process(t_proc *process, t_vm *vm);
 void			execute_instruction(t_proc *process, t_vm *vm);
 void			pre_execute_instruction(t_proc *process, t_vm *vm);
+
+int				check_processes(t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);

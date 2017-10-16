@@ -3,18 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:26:21 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/11 16:44:15 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/16 18:44:51 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "corewar.h"
 
 void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 {
 	int			i;
 
+	proc->alive = 1;
+	vm->num_lives++;
 	i = 0;
 	while (i < vm->num_players)
 	{
@@ -23,7 +26,7 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 			ft_printf("The player $%s ($%#x) is in life !",
 					vm->players[i].header.prog_name, inst->params[0]);
 			++(vm->players[i].nb_live);
-			vm->players[i].last_live = proc->cycles;
+			vm->players[i].last_live = vm->cycle;
 			return ;
 		}
 		++i;
