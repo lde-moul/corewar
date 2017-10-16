@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/12 18:51:32 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/16 17:56:43 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int				four_octets_to_int(unsigned char ram[MEM_SIZE], int pc);
 
 void			init_ncurses(t_vm *vm);
 void			display_ram(t_vm *vm);
+void			change_ram_color(t_vm *vm, int pc, int pc_dest);
 
 /*
 ** Instructions

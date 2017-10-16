@@ -19,7 +19,7 @@ void	cor_fork(t_vm *vm, t_proc *src, t_instruction *inst)
 	if (!(new = malloc(sizeof(t_proc))))
 		exit (1);
 	cpy_reg(src->r, new->r);
-	new->pc = ((src->pc + (inst->params[0] % IDX_MOD)) % MEM_SIZE);
+	new->pc = ((MEM_SIZE + src->pc + (inst->params[0] % IDX_MOD)) % MEM_SIZE);
 	new->carry = src->carry;
 	new->cycles = src->cycles;
 	new->last_live = src->last_live;
@@ -36,7 +36,7 @@ void	cor_lfork(t_vm *vm, t_proc *src, t_instruction *inst)
 	if (!(new = malloc(sizeof(t_proc))))
 		exit (1);
 	cpy_reg(src->r, new->r);
-	new->pc = ((src->pc + inst->params[0]) % MEM_SIZE);
+	new->pc = ((MEM_SIZE + src->pc + inst->params[0]) % MEM_SIZE);
 	new->carry = src->carry;
 	new->cycles = src->cycles;
 	new->last_live = src->last_live;
