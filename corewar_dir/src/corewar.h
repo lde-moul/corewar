@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/16 20:29:35 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/17 17:02:34 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,11 @@ void			handle_main_loop(t_vm *vm);
 
 void			create_process(t_vm *vm, int pc, int player_num, int no_init);
 void			kill_process(t_proc *process, t_vm *vm);
+
 void			execute_instruction(t_proc *process, t_vm *vm);
 void			pre_execute_instruction(t_proc *process, t_vm *vm);
+void			ocp_to_param_types(t_arg_type param_types[3],
+				unsigned char ocp);
 
 int				check_processes(t_vm *vm);
 
