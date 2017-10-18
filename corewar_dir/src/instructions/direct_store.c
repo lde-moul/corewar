@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   direct_store.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/16 20:00:37 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/18 16:22:31 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "corewar.h"
 
 void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)

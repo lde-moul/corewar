@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/12 19:15:44 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/17 18:58:33 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,6 @@
 // 		printf("Param 3: %8s, %d\n", sub_ocp(inst->param_types[2]), inst->params[2]);
 // }
 
-static void	ocp_to_param_types(t_arg_type param_types[3], unsigned char ocp)
-{
-	// !!! Check if the ocp is not allowed
-	param_types[0] = ocp >> 6;
-	param_types[1] = (ocp >> 4) & 3;
-	param_types[2] = (ocp >> 2) & 3;
-}
-
 static void	tab_to_param_types(char param_types[3], char arg[3])
 {
 	if (arg[0] == T_REG)
@@ -77,13 +69,13 @@ static void	tab_to_param_types(char param_types[3], char arg[3])
 }
 
 static void	read_param(t_instruction *inst, int n,
-		unsigned char ram[MEM_SIZE], int *pc)
+			unsigned char ram[MEM_SIZE], int *pc)
 {
 	if (!inst->param_types[n])
 		return ;
 	if (inst->param_types[n] == REG_CODE)
 	{
-		inst->params[n] = ram[*pc]; // !!! Check invalid register number
+		inst->params[n] = ram[*pc];
 		if (inst->params[n] < 1 || inst->params[n] > REG_NUMBER)
 			inst->invalid = 1;
 		*pc = (*pc + 1) % MEM_SIZE;
@@ -105,7 +97,6 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	t_instruction	inst;
 	int				pc;
 
-	// !!! Check if the ocp is not allowed for this instruction?
 	inst.opcode = proc->opcode;
 	if (inst.opcode < 1 || inst.opcode > 16)
 	{
@@ -113,24 +104,22 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 		pre_execute_instruction(proc, vm);
 		return ;
 	}
-	//printf("Executing instruction at %d\n", proc->pc);
 	pc = (proc->pc + 1) % MEM_SIZE;
 	inst.invalid = 0;
 	if (op_tab[inst.opcode - 1].ocp)
 	{
 		inst.ocp = vm->ram[pc];
 		pc = (pc + 1) % MEM_SIZE;
-		ocp_to_param_types(inst.param_types, inst.ocp);
+		ocp_to_param_types(&inst, inst.ocp);
 	}
 	else
 		tab_to_param_types(inst.param_types, op_tab[inst.opcode - 1].arg);
 	read_param(&inst, 0, vm->ram, &pc);
 	read_param(&inst, 1, vm->ram, &pc);
 	read_param(&inst, 2, vm->ram, &pc);
-	//print_instruction_info(&inst);
 	if (!inst.invalid)
 		g_op_functions[inst.opcode - 1](vm, proc, &inst);
-	if (inst.opcode != 9 || inst.invalid)
+	if (!(inst.opcode == 9 && proc->carry) || inst.invalid)
 		proc->pc = pc;
 	pre_execute_instruction(proc, vm);
 }
