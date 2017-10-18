@@ -23,8 +23,8 @@ void	indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 		% MEM_SIZE] = proc->r[inst->params[0]] & 0x00ff0000 >> 16;
 	vm->ram[(MEM_SIZE + proc->pc + 3 + (param_2 + param_3 % IDX_MOD))
 		% MEM_SIZE] = proc->r[inst->params[0]] & 0xff000000 >> 24;
-	// change_ram_color(vm, proc->pc,
-	// 		(MEM_SIZE + proc->pc + (param_2 + param_3 % IDX_MOD)) % MEM_SIZE);
+	change_ram_color(vm, proc->pc,
+			(MEM_SIZE + proc->pc + (param_2 + param_3 % IDX_MOD)) % MEM_SIZE);
 	proc->carry = param_2 + param_3 == 0 ? 1 : 0;
 	display_ram(vm);
 }

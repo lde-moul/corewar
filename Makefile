@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/17 18:35:25 by lde-moul         ###   ########.fr        #
+#    Updated: 2017/10/18 16:22:11 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SRC_NAME_2 = main.c\
 			 instructions/aff.c\
 			 ncurses/display.c\
 			 ncurses/init.c\
-			#  ncurses/change_ram_color.c\
+			 ncurses/change_ram_color.c\
 
 OBJ_PATH_1 = asm_dir/obj
 OBJ_NAME_1 = $(SRC_NAME_1:.c=.o)
