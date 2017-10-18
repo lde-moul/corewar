@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   direct_store.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/16 20:00:37 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/17 18:36:22 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "corewar.h"
 
 void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
@@ -26,8 +27,8 @@ void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 			% MEM_SIZE] = proc->r[inst->params[0]] & 0x00ff0000 >> 16;
 		vm->ram[(MEM_SIZE + proc->pc + 3 + (inst->params[1] % IDX_MOD))
 			% MEM_SIZE] = proc->r[inst->params[0]] & 0xff000000 >> 24;
-		change_ram_color(vm, proc->pc,
-				(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)) % MEM_SIZE);
+		// change_ram_color(vm, proc->pc,
+		// 		(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)) % MEM_SIZE);
 	}
 	else
 		proc->r[inst->params[1]] = proc->r[inst->params[0]];
@@ -50,8 +51,8 @@ void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 			proc->r[inst->params[0]] & 0x00ff0000 >> 16;
 		vm->ram[(MEM_SIZE + proc->pc + 3 + inst->params[1]) % MEM_SIZE] =
 			proc->r[inst->params[0]] & 0xff000000 >> 24;
-		change_ram_color(vm, proc->pc,
-			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)));
+		// change_ram_color(vm, proc->pc,
+		// 	(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)));
 	}
 	else
 		proc->r[inst->params[1]] = proc->r[inst->params[0]];

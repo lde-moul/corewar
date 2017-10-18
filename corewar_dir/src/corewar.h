@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/17 17:02:34 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/18 16:06:48 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct	s_vm
 	int				checks;
 	int				cycle;
 	int				dump_cycle;
+	int				visu;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
@@ -79,8 +80,8 @@ void			kill_process(t_proc *process, t_vm *vm);
 
 void			execute_instruction(t_proc *process, t_vm *vm);
 void			pre_execute_instruction(t_proc *process, t_vm *vm);
-void			ocp_to_param_types(t_arg_type param_types[3],
-				unsigned char ocp);
+
+void			ocp_to_param_types(t_instruction *inst, unsigned char ocp);
 
 int				check_processes(t_vm *vm);
 

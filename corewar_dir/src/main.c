@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/16 18:41:42 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/17 19:06:53 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ int	main(int argc, char **argv)
 	t_vm	vm;
 
 	parse(argc, argv, &vm);
+	vm.visu = 1;
 	init_vm(&vm);
-	init_ncurses(&vm);
-	display_ram(&vm);
+	if (vm.visu)
+		init_ncurses(&vm);
+	if (vm.visu)
+		display_ram(&vm);
 	handle_main_loop(&vm);
 	// !!! Display winner
 //	getch();
-	endwin();
+	if (vm.visu)
+		endwin();
 	return (0);
 }

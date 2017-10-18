@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/17 17:02:50 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/17 18:58:33 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	read_param(t_instruction *inst, int n,
 		return ;
 	if (inst->param_types[n] == REG_CODE)
 	{
-		inst->params[n] = ram[*pc]; // !!! Check invalid register number
+		inst->params[n] = ram[*pc];
 		if (inst->params[n] < 1 || inst->params[n] > REG_NUMBER)
 			inst->invalid = 1;
 		*pc = (*pc + 1) % MEM_SIZE;
@@ -110,7 +110,7 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	{
 		inst.ocp = vm->ram[pc];
 		pc = (pc + 1) % MEM_SIZE;
-		ocp_to_param_types(inst.param_types, inst.ocp);
+		ocp_to_param_types(&inst, inst.ocp);
 	}
 	else
 		tab_to_param_types(inst.param_types, op_tab[inst.opcode - 1].arg);
@@ -119,7 +119,7 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	read_param(&inst, 2, vm->ram, &pc);
 	if (!inst.invalid)
 		g_op_functions[inst.opcode - 1](vm, proc, &inst);
-	if (inst.opcode != 9 || inst.invalid)
+	if (!(inst.opcode == 9 && proc->carry) || inst.invalid)
 		proc->pc = pc;
 	pre_execute_instruction(proc, vm);
 }
