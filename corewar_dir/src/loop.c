@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/17 18:49:42 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/18 18:06:37 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@ void		handle_main_loop(t_vm *vm)
 		if (vm->visu)
 		{
 			display_ram(vm);
-			getch();
+			if (sleep_display(vm))
+				return ;
 		}
 		// !!! Handle dump
 		// if (vm->cycle == vm->dump_cycle)
-		handle_processes(vm);
-		vm->check_cycles--;
-		if (!vm->check_cycles && !check_processes(vm))
-			break ;
-		vm->cycle++;
+		if(!vm->pause)
+		{
+			handle_processes(vm);
+			vm->check_cycles--;
+			if (!vm->check_cycles && !check_processes(vm))
+				break ;
+			vm->cycle++;
+			usleep(vm->speed);
+		}
 	}
 }

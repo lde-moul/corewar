@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/18 17:35:42 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/18 18:50:01 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 			% MEM_SIZE] = proc->r[inst->params[0]] & 0x00ff0000 >> 16;
 		vm->ram[(MEM_SIZE + proc->pc + 3 + (inst->params[1] % IDX_MOD))
 			% MEM_SIZE] = proc->r[inst->params[0]] & 0xff000000 >> 24;
-		change_ram_color(vm, proc->pc,
-				(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)) % MEM_SIZE);
+		 change_ram_color(vm, proc->pc,
+			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)) % MEM_SIZE);
 	}
 	else
 		proc->r[inst->params[1]] = proc->r[inst->params[0]];
