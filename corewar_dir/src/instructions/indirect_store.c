@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   indirect_store.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/18 17:36:04 by gdelabro          #+#    #+#             */
+/*   Updated: 2017/10/18 17:36:31 by gdelabro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "corewar.h"
 
 void	indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst)
@@ -26,5 +38,4 @@ void	indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 	change_ram_color(vm, proc->pc,
 			(MEM_SIZE + proc->pc + (param_2 + param_3 % IDX_MOD)) % MEM_SIZE);
 	proc->carry = param_2 + param_3 == 0 ? 1 : 0;
-	display_ram(vm);
 }
