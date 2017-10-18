@@ -15,8 +15,8 @@ void	indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst)
 			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD) + 2) % MEM_SIZE);
 	else
 		param_b = inst->params[1];
-	proc->r[inst->params[2]] = param_a + param_b;
-	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
+	proc->r[inst->params[2] - 1] = param_a + param_b;
+	proc->carry = proc->r[inst->params[2] - 1] == 0 ? 1 : 0;
 }
 
 void	long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst)
@@ -34,6 +34,6 @@ void	long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst)
 			(MEM_SIZE + proc->pc + inst->params[1] + 2) % MEM_SIZE);
 	else
 		param_b = inst->params[1];
-	proc->r[inst->params[2]] = param_a + param_b;
-	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
+	proc->r[inst->params[2] - 1] = param_a + param_b;
+	proc->carry = proc->r[inst->params[2] - 1] == 0 ? 1 : 0;
 }
