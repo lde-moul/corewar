@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 17:19:42 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/16 20:23:29 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/18 18:21:46 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	init_ncurses(t_vm *vm)
 	start_color();
 	cbreak();
 	curs_set(0);
+	nodelay(stdscr, 1);
+	vm->speed = 20000;
+	vm->pause = 1;
 	init_pair(1, COLOR_BLACK, COLOR_BLACK);
 	init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	init_pair(3, COLOR_RED, COLOR_BLACK);

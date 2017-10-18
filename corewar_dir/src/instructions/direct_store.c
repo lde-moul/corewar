@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/18 19:07:28 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/18 19:12:44 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 		vm->ram[(MEM_SIZE + proc->pc + 3 + (inst->params[1] % IDX_MOD))
 			% MEM_SIZE] = proc->r[inst->params[0] - 1] & 0xff000000 >> 24;
 		change_ram_color(vm, proc->pc,
-				(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)) % MEM_SIZE);
+			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)) % MEM_SIZE);
 	}
 	else
 		proc->r[inst->params[1] - 1] = proc->r[inst->params[0] - 1];
