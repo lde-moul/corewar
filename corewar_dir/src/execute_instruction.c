@@ -6,13 +6,13 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/17 18:58:33 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/18 17:25:56 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-// !!!
+// // !!!
 // static char *sub_ocp(char sub_ocp)
 // {
 // 	switch (sub_ocp)
@@ -24,16 +24,16 @@
 // 		default: return "invalid"; break ;
 // 	}
 // }
-
-// !!!
+//
+// // !!!
 // static void print_ocp(char ocp)
 // {
 // 	printf("ocp: %s, ", sub_ocp((ocp >> 6) & 3));
 // 	printf("ocp: %s, ", sub_ocp((ocp >> 4) & 3));
 // 	printf("ocp: %s\n", sub_ocp((ocp >> 2) & 3));
 // }
-
-// !!!
+//
+// // !!!
 // static void print_instruction_info(t_instruction *inst)
 // {
 // 	printf("Opcode: %s (%d)\n", op_tab[inst->opcode - 1].name, inst->opcode);
@@ -52,20 +52,26 @@ static void	tab_to_param_types(char param_types[3], char arg[3])
 		param_types[0] = REG_CODE;
 	else if (arg[0] == T_DIR)
 		param_types[0] = DIR_CODE;
-	else
+	else if (arg[0] == T_IND)
 		param_types[0] = IND_CODE;
+	else
+		param_types[0] = 0;
 	if (arg[1] == T_REG)
 		param_types[1] = REG_CODE;
 	else if (arg[1] == T_DIR)
 		param_types[1] = DIR_CODE;
-	else
+	else if (arg[1] == T_IND)
 		param_types[1] = IND_CODE;
+	else
+		param_types[1] = 0;
 	if (arg[2] == T_REG)
 		param_types[2] = REG_CODE;
 	else if (arg[2] == T_DIR)
 		param_types[2] = DIR_CODE;
-	else
+	else if (arg[2] == T_IND)
 		param_types[2] = IND_CODE;
+	else
+		param_types[2] = 0;
 }
 
 static void	read_param(t_instruction *inst, int n,
