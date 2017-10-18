@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/18 17:22:10 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/18 17:45:34 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ static void	read_param(t_instruction *inst, int n,
 			unsigned char ram[MEM_SIZE], int *pc)
 {
 	if (!inst->param_types[n])
-	{
-		printf("no param %d\n", n);
 		return ;
-	}
 	if (inst->param_types[n] == REG_CODE)
 	{
 		inst->params[n] = ram[*pc];
