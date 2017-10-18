@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/18 16:06:48 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/18 16:58:44 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int				check_processes(t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);
+
+void			dump_ram(t_vm *vm);
 
 int				swap_int(int n);
 unsigned int	swap_uint(unsigned int n);
