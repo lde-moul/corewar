@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/18 16:58:44 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/18 17:27:21 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void			init_ncurses(t_vm *vm);
 void			display_ram(t_vm *vm);
 void			change_ram_color(t_vm *vm, int pc, int pc_dest);
 
+void			display_winner(t_vm *vm);
 /*
 ** Instructions
 */

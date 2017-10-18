@@ -6,11 +6,24 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/17 19:06:53 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/18 17:27:32 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+void	display_winner(t_vm *vm)
+{
+	int i;
+	int i2;
+
+	i2 = 0;
+	i = -1;
+	while (++i < vm->num_players)
+		vm->players[i].last_live > vm->players[i2].last_live ? i2 = i : 0;
+	ft_printf("Contestant %d, \"%s\" (\"%s\") !", i2 + 1,
+		vm->players[i2].header.prog_name, vm->players[i2].header.comment);
+}
 
 int	main(int argc, char **argv)
 {
@@ -24,6 +37,7 @@ int	main(int argc, char **argv)
 	if (vm.visu)
 		display_ram(&vm);
 	handle_main_loop(&vm);
+	display_winner(&vm);
 	// !!! Display winner
 //	getch();
 	if (vm.visu)
