@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/18 18:06:37 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/19 16:17:51 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	handle_processes(t_vm *vm)
 
 void		handle_main_loop(t_vm *vm)
 {
-	while (vm->cycle < 10000) // !!!
+	while (1)
 	{
 		if (vm->visu)
 		{

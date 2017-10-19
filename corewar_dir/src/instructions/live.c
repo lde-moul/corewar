@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:26:21 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/18 19:03:31 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/19 17:01:49 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 
 	proc->alive = 1;
 	vm->num_lives++;
+	vm->tot_lives++;
 	i = 0;
 	while (i < vm->num_players)
 	{
