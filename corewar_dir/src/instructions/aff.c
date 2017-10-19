@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   aff.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/18 19:04:15 by lde-moul          #+#    #+#             */
+/*   Updated: 2017/10/18 19:04:16 by lde-moul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "corewar.h"
 
 void	aff(t_vm *vm, t_proc *proc, t_instruction *inst)
 {
-	(void)vm;
-	ft_printf("%c", inst->params[0] % 256);
-	proc->carry = inst->params[0] % 256 == 0 ? 1 : 0;
+	if (!vm->visu)
+		ft_printf("%c", proc->r[inst->params[0] - 1] % 256);
+	proc->carry = proc->r[inst->params[0] - 1] % 256 == 0 ? 1 : 0;
 }

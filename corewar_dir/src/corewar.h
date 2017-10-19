@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/18 17:27:21 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/18 19:14:00 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <errno.h>
 # include <sys/time.h>
 # include <ncurses.h>
+
+# define MAX_SPEED 10000
+# define MIN_SPEED 1000000
 
 typedef struct	s_player
 {
@@ -68,6 +71,8 @@ typedef struct	s_vm
 	int				cycle;
 	int				dump_cycle;
 	int				visu;
+	int				speed;
+	int				pause;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
@@ -98,6 +103,7 @@ short			two_octets_to_short(unsigned char ram[MEM_SIZE], int pc);
 int				four_octets_to_int(unsigned char ram[MEM_SIZE], int pc);
 
 void			init_ncurses(t_vm *vm);
+int				sleep_display(t_vm *vm);
 void			display_ram(t_vm *vm);
 void			change_ram_color(t_vm *vm, int pc, int pc_dest);
 

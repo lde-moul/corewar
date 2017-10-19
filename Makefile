@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/18 16:59:27 by gdelabro         ###   ########.fr        #
+#    Updated: 2017/10/18 18:50:42 by afourcad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC_NAME_2 = main.c\
 			 ncurses/display.c\
 			 ncurses/init.c\
 			 ncurses/change_ram_color.c\
+			 ncurses/sleep_display.c\
 
 OBJ_PATH_1 = asm_dir/obj
 OBJ_NAME_1 = $(SRC_NAME_1:.c=.o)
