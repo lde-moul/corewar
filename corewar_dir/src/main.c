@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/18 17:27:32 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/19 18:18:22 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	handle_main_loop(&vm);
 	display_winner(&vm);
 	// !!! Display winner
-//	getch();
+	//	getch();
 	if (vm.visu)
 		endwin();
 	return (0);

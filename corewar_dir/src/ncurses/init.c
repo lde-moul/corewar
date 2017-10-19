@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 17:19:42 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/18 18:21:46 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/19 19:02:21 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_ncurses(t_vm *vm)
 {
-	(void)vm;
 	initscr();
 	noecho();
 	start_color();
