@@ -13,7 +13,7 @@ value_for_live:
 
 start:
 	live	%0
-	ld		%0, r16
+	ld		%0, r2
 	fork	%:start2
 
 wall_1:

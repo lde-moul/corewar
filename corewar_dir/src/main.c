@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/18 19:01:03 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/19 16:00:44 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	t_vm	vm;
 
 	parse(argc, argv, &vm);
-	vm.visu = 0;
+	vm.visu = 1;
 	init_vm(&vm);
 	if (vm.visu)
 		init_ncurses(&vm);

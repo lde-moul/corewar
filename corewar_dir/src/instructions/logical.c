@@ -6,7 +6,7 @@
 /*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 16:26:15 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/16 18:15:21 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/19 19:00:01 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,20 @@ void	cor_and(t_vm *vm, t_proc *proc, t_instruction *inst)
 
 	if (inst->param_types[0] == IND_CODE)
 		param_a = four_octets_to_int(vm->ram,
-			(MEM_SIZE + proc->pc + (inst->params[0] % IDX_MOD) + 2) % MEM_SIZE);
+			mod_adr(proc->pc + (inst->params[0] % IDX_MOD)));
+	else if (inst->param_types[0] == REG_CODE)
+		param_a = proc->r[inst->params[0] - 1];
 	else
 		param_a = inst->params[0];
 	if (inst->param_types[1] == IND_CODE)
 		param_b = four_octets_to_int(vm->ram,
-			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD) + 2) % MEM_SIZE);
+			mod_adr(proc->pc + (inst->params[1] % IDX_MOD)));
+	else if (inst->param_types[1] == REG_CODE)
+		param_b = proc->r[inst->params[1] - 1];
 	else
 		param_b = inst->params[1];
-	proc->r[inst->params[2]] = param_a & param_b;
-	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
+	proc->r[inst->params[2] - 1] = param_a & param_b;
+	proc->carry = proc->r[inst->params[2] - 1] == 0 ? 1 : 0;
 }
 
 void	cor_or(t_vm *vm, t_proc *proc, t_instruction *inst)
@@ -38,16 +42,20 @@ void	cor_or(t_vm *vm, t_proc *proc, t_instruction *inst)
 
 	if (inst->param_types[0] == IND_CODE)
 		param_a = four_octets_to_int(vm->ram,
-			(MEM_SIZE + proc->pc + (inst->params[0] % IDX_MOD) + 2) % MEM_SIZE);
+			mod_adr(proc->pc + (inst->params[0] % IDX_MOD)));
+	else if (inst->param_types[0] == REG_CODE)
+		param_a = proc->r[inst->params[0] - 1];
 	else
 		param_a = inst->params[0];
 	if (inst->param_types[1] == IND_CODE)
 		param_b = four_octets_to_int(vm->ram,
-			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD) + 2) % MEM_SIZE);
+			mod_adr(proc->pc + (inst->params[1] % IDX_MOD)));
+	else if (inst->param_types[1] == REG_CODE)
+		param_b = proc->r[inst->params[1] - 1];
 	else
 		param_b = inst->params[1];
-	proc->r[inst->params[2]] = param_a | param_b;
-	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
+	proc->r[inst->params[2] - 1] = param_a | param_b;
+	proc->carry = proc->r[inst->params[2] - 1] == 0 ? 1 : 0;
 }
 
 void	cor_xor(t_vm *vm, t_proc *proc, t_instruction *inst)
@@ -57,14 +65,18 @@ void	cor_xor(t_vm *vm, t_proc *proc, t_instruction *inst)
 
 	if (inst->param_types[0] == IND_CODE)
 		param_a = four_octets_to_int(vm->ram,
-			(MEM_SIZE + proc->pc + (inst->params[0] % IDX_MOD) + 2) % MEM_SIZE);
+			mod_adr(proc->pc + (inst->params[0] % IDX_MOD)));
+	else if (inst->param_types[0] == REG_CODE)
+		param_a = proc->r[inst->params[0] - 1];
 	else
 		param_a = inst->params[0];
 	if (inst->param_types[1] == IND_CODE)
 		param_b = four_octets_to_int(vm->ram,
-			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD) + 2) % MEM_SIZE);
+			mod_adr(proc->pc + (inst->params[1] % IDX_MOD)));
+	else if (inst->param_types[1] == REG_CODE)
+		param_b = proc->r[inst->params[1] - 1];
 	else
 		param_b = inst->params[1];
-	proc->r[inst->params[2]] = param_a ^ param_b;
-	proc->carry = proc->r[inst->params[2]] == 0 ? 1 : 0;
+	proc->r[inst->params[2] - 1] = param_a ^ param_b;
+	proc->carry = proc->r[inst->params[2] - 1] == 0 ? 1 : 0;
 }

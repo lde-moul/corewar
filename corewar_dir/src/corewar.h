@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/18 19:14:00 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/19 18:03:10 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void			indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 
 void			live(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			zjmp(t_vm *vm, t_proc *proc, t_instruction *inst);
+int				mod_adr(int adr);
 
 void			cor_fork(t_vm *vm, t_proc *src, t_instruction *inst);
 void			cor_lfork(t_vm *vm, t_proc *src, t_instruction *inst);

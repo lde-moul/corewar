@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/19 15:50:20 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/19 19:44:24 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 	value = 0;
 	if (inst->param_types[1] == IND_CODE)
 	{
-		vm->ram[(MEM_SIZE + proc->pc + 3 + (inst->params[1] % IDX_MOD))
-			% MEM_SIZE] = proc->r[inst->params[0] - 1] & 0x000000ff;
-		vm->ram[(MEM_SIZE + proc->pc + 2 + (inst->params[1] % IDX_MOD))
-			% MEM_SIZE] = (proc->r[inst->params[0] - 1] & 0x0000ff00) >> 8;
-		vm->ram[(MEM_SIZE + proc->pc + 1 + (inst->params[1] % IDX_MOD))
-			% MEM_SIZE] = (proc->r[inst->params[0] - 1] & 0x00ff0000) >> 16;
-		vm->ram[(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD))
-			% MEM_SIZE] = (proc->r[inst->params[0] - 1] & 0xff000000) >> 24;
+		vm->ram[mod_adr(proc->pc + 3 + (inst->params[1] % IDX_MOD))]
+			= proc->r[inst->params[0] - 1] & 0x000000ff;
+		vm->ram[mod_adr(proc->pc + 2 + (inst->params[1] % IDX_MOD))]
+			= (proc->r[inst->params[0] - 1] & 0x0000ff00) >> 8;
+		vm->ram[mod_adr(proc->pc + 1 + (inst->params[1] % IDX_MOD))]
+			= (proc->r[inst->params[0] - 1] & 0x00ff0000) >> 16;
+		vm->ram[mod_adr(proc->pc + (inst->params[1] % IDX_MOD))]
+			= (proc->r[inst->params[0] - 1] & 0xff000000) >> 24;
 		change_ram_color(vm, proc->pc,
-			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)) % MEM_SIZE);
+			mod_adr(proc->pc + (inst->params[1] % IDX_MOD)));
 	}
 	else
 		proc->r[inst->params[1] - 1] = proc->r[inst->params[0] - 1];
@@ -43,16 +43,16 @@ void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 	value = 0;
 	if (inst->param_types[1] == IND_CODE)
 	{
-		vm->ram[(MEM_SIZE + proc->pc + 3 + inst->params[1]) % MEM_SIZE] =
+		vm->ram[mod_adr(proc->pc + 3 + inst->params[1])] =
 			(proc->r[inst->params[0] - 1] & 0x000000ff);
-		vm->ram[(MEM_SIZE + proc->pc + 2 + inst->params[1]) % MEM_SIZE] =
+		vm->ram[mod_adr(proc->pc + 2 + inst->params[1])] =
 			(proc->r[inst->params[0] - 1] & 0x0000ff00) >> 8;
-		vm->ram[(MEM_SIZE + proc->pc + 1 + inst->params[1]) % MEM_SIZE] =
+		vm->ram[mod_adr(proc->pc + 1 + inst->params[1])] =
 			(proc->r[inst->params[0] - 1] & 0x00ff0000) >> 16;
-		vm->ram[(MEM_SIZE + proc->pc + inst->params[1]) % MEM_SIZE] =
+		vm->ram[mod_adr(proc->pc + inst->params[1])] =
 			(proc->r[inst->params[0] - 1] & 0xff000000) >> 24;
 		change_ram_color(vm, proc->pc,
-			(MEM_SIZE + proc->pc + (inst->params[1] % IDX_MOD)));
+			mod_adr(proc->pc + (inst->params[1] % IDX_MOD)));
 	}
 	else
 		proc->r[inst->params[1] - 1] = proc->r[inst->params[0] - 1];

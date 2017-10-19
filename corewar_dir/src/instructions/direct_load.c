@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:15:07 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/18 18:59:23 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/19 18:08:44 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	direct_load(t_vm *vm, t_proc *proc, t_instruction *inst)
 	rel_pc = 0;
 	if (inst->param_types[0] == IND_CODE)
 	{
-		rel_pc = (MEM_SIZE + proc->pc + (inst->params[0] % IDX_MOD) + 2)
-			% MEM_SIZE;
+		rel_pc = mod_adr(proc->pc + (inst->params[0] % IDX_MOD));
 		proc->r[inst->params[1] - 1] = four_octets_to_int(vm->ram, rel_pc);
 	}
 	else
@@ -35,7 +34,7 @@ void	long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst)
 	rel_pc = 0;
 	if (inst->param_types[0] == IND_CODE)
 	{
-		rel_pc = (MEM_SIZE + proc->pc + inst->params[0] + 2) % MEM_SIZE;
+		rel_pc = mod_adr(proc->pc + inst->params[0]);
 		proc->r[inst->params[1] - 1] = four_octets_to_int(vm->ram, rel_pc);
 	}
 	else
