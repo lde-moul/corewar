@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:17:26 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/18 18:55:39 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/19 16:58:15 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void		init_vm(t_vm *vm)
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	vm->check_cycles = vm->cycle_to_die;
 	vm->num_lives = 0;
+	vm->tot_lives = 0;
 	vm->checks = MAX_CHECKS;
 }

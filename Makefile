@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/18 18:50:42 by afourcad         ###   ########.fr        #
+#    Updated: 2017/10/19 18:25:50 by afourcad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC_NAME_2 = main.c\
 			 ncurses/init.c\
 			 ncurses/change_ram_color.c\
 			 ncurses/sleep_display.c\
+			 ncurses/display_players.c\
 
 OBJ_PATH_1 = asm_dir/obj
 OBJ_NAME_1 = $(SRC_NAME_1:.c=.o)
@@ -116,7 +117,24 @@ fclean: clean
 	@echo "\033[34;1m$(NAME_1)\033[0;1m: $(NAME_1) deleted"
 	@echo "\033[31;1m$(NAME_2)\033[0;1m: $(NAME_2) deleted"
 
-
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
+
+clean_corewar:
+	@rm -rf $(OBJ_2)
+	@rm -rf $(OBJ_PATH_2)
+	@echo "\033[31;1m$(NAME_2)\033[0;1m: objects deleted"
+
+fclean_corewar: clean_corewar
+	@rm -rf $(NAME_2)
+	@echo "\033[31;1m$(NAME_2)\033[0;1m: $(NAME_2) deleted"
+
+re_corewar: fclean_corewar $(NAME_2)
+
+recw: re_corewar
+
+.PHONY: clean_corewar fclean_corewar re_corewar recw

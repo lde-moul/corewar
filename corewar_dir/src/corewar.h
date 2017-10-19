@@ -6,7 +6,11 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/10/19 18:03:10 by gdelabro         ###   ########.fr       */
+=======
+/*   Updated: 2017/10/19 18:52:32 by afourcad         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +70,7 @@ typedef struct	s_vm
 	t_player		players[MAX_PLAYERS];
 	int				cycle_to_die;
 	int				num_lives;
+	int				tot_lives;
 	int				check_cycles;
 	int				checks;
 	int				cycle;
@@ -106,6 +111,7 @@ void			init_ncurses(t_vm *vm);
 int				sleep_display(t_vm *vm);
 void			display_ram(t_vm *vm);
 void			change_ram_color(t_vm *vm, int pc, int pc_dest);
+void			display_players(t_vm *vm, WINDOW *info);
 
 void			display_winner(t_vm *vm);
 /*
