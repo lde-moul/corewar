@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:21 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/16 19:00:38 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/18 18:56:04 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	parse_players(int argc, char **argv, int *i, t_vm *vm)
 			ft_printf("Too many champions\n");
 			exit(1);
 		}
-		vm->players[vm->num_players].number = vm->num_players - 1; // !!!
+		vm->players[vm->num_players].number = -vm->num_players - 1; // !!!
 		load_player(&vm->players[vm->num_players], argv[*i]);
 		vm->num_players++;
 		(*i)++;
