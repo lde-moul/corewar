@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 17:42:12 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/20 16:45:28 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/20 20:05:18 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	sleep_display(t_vm *vm)
 {
 	int	key;
 
-	if((key = getch()) == ' ')
+	if ((key = getch()) == ' ')
 		vm->pause = !vm->pause;
 	else if (key == 27)
 		return (1);
