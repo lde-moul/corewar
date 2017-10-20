@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/20 19:19:56 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/20 19:43:48 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int				check_processes(t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);
+int				invalid_int(char *s);
 
 void			dump_ram(t_vm *vm);
 
@@ -113,6 +114,7 @@ void			change_ram_color(t_vm *vm, int pc, int pc_dest);
 void			display_players(t_vm *vm, WINDOW *info);
 
 void			display_winner(t_vm *vm);
+
 /*
 ** Instructions
 */
@@ -125,12 +127,12 @@ void			cor_or(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			cor_xor(t_vm *vm, t_proc *proc, t_instruction *inst);
 
 void			direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 
 void			live(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			zjmp(t_vm *vm, t_proc *proc, t_instruction *inst);

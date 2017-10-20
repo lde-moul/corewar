@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/19 18:25:50 by afourcad         ###   ########.fr        #
+#    Updated: 2017/10/20 19:44:00 by lde-moul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_NAME_2 = main.c\
 			 dump.c\
 			 parser/parser.c\
 			 parser/load_player.c\
+			 parser/invalid_int.c\
 			 instructions/live.c\
 			 instructions/direct_load.c\
 			 instructions/direct_store.c\

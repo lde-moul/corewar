@@ -6,21 +6,25 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:21 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/20 19:18:25 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/20 19:47:10 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
+static void	error(const char *msg)
+{
+	ft_printf(msg);
+	exit(1);
+}
+
 static void	parse_dump(int argc, char **argv, int *i, t_vm *vm)
 {
 	(*i)++;
 	if (*i == argc)
-	{
-		ft_printf("Missing argument after -dump\n");
-		exit(1);
-	}
-	// !!! Check number validity
+		error("Missing argument after -dump\n");
+	if (invalid_int(argv[*i]))
+		error("Invalid dump cycle\n");
 	vm->dump_cycle = ft_atoi(argv[*i]);
 }
 
@@ -46,14 +50,17 @@ static void	parse_players(int argc, char **argv, int *i, t_vm *vm)
 	vm->num_players = 0;
 	while (*i < argc)
 	{
-		// if (!ft_strcmp(argv[*i], "-n"))
-		// 	return (0);
-		if (vm->num_players >= MAX_PLAYERS)
+		vm->players[vm->num_players].number = -vm->num_players - 1;
+		if (!ft_strcmp(argv[*i], "-n"))
 		{
-			ft_printf("Too many champions\n");
-			exit(1);
+			if (++(*i) == argc)
+				error("Missing argument after -n\n");
+			if (invalid_int(argv[*i]))
+				error("Invalid player number\n");
+			vm->players[vm->num_players].number = ft_atoi(argv[(*i)++]);
 		}
-		vm->players[vm->num_players].number = -vm->num_players - 1; // !!!
+		if (vm->num_players >= MAX_PLAYERS)
+			error("Too many champions\n");
 		load_player(&vm->players[vm->num_players], argv[*i]);
 		vm->num_players++;
 		(*i)++;
