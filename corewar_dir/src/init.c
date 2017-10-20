@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:17:26 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/19 16:58:15 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/20 16:26:55 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	init_player(int n, t_vm *vm)
 	int			pc;
 
 	player = &vm->players[n];
+	player->nb_live = 0;
+	player->last_live = 0;
 	pc = n * MEM_SIZE / vm->num_players;
 	ft_memcpy(vm->ram + pc, player->prog, player->header.prog_size);
 	ft_memset(vm->ram_color + pc, n + 2, player->header.prog_size);
