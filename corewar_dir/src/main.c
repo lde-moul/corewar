@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/20 19:18:07 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/20 20:00:26 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	main(int argc, char **argv)
 		init_ncurses(&vm);
 	handle_main_loop(&vm);
 	display_winner(&vm);
-	// !!! Display winner
-	//	getch();
 	if (vm.visu)
 		endwin();
 	return (0);
