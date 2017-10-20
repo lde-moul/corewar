@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:21 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/19 15:51:39 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/20 19:18:25 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,21 @@ static void	parse_dump(int argc, char **argv, int *i, t_vm *vm)
 		ft_printf("Missing argument after -dump\n");
 		exit(1);
 	}
-	// !!! Check number validity?
+	// !!! Check number validity
 	vm->dump_cycle = ft_atoi(argv[*i]);
 }
 
 static void	parse_options(int argc, char **argv, int *i, t_vm *vm)
 {
 	vm->dump_cycle = -1;
+	vm->visu = 0;
 	*i = 1;
 	while (*i < argc)
 	{
 		if (!ft_strcmp(argv[*i], "-dump"))
 			parse_dump(argc, argv, i, vm);
+		else if (!ft_strcmp(argv[*i], "-v"))
+			vm->visu = 1;
 		else
 			return ;
 		(*i)++;
