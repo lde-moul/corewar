@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/20 16:42:17 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/20 19:19:56 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define MAX_SPEED 10000
 # define MIN_SPEED 1000000
 # define SPEED_STEP 3000
+# define DISPLAY_FREQUENCY 100000
 
 typedef struct	s_player
 {
@@ -75,6 +76,7 @@ typedef struct	s_vm
 	int				visu;
 	int				speed;
 	int				pause;
+	struct timeval	last_display;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
