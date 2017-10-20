@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/19 16:17:51 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/20 17:09:50 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void		handle_main_loop(t_vm *vm)
 		// if (vm->cycle == vm->dump_cycle)
 		if(!vm->pause)
 		{
+			vm->cycle++;
 			handle_processes(vm);
 			vm->check_cycles--;
 			if (!vm->check_cycles && !check_processes(vm))
 				break ;
-			vm->cycle++;
 			usleep(vm->speed);
 		}
 	}
