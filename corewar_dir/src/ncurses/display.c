@@ -6,12 +6,11 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/19 19:07:56 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/20 20:03:50 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
 
 void	display_pc(t_vm *vm)
 {
@@ -65,7 +64,7 @@ void	display_ram(t_vm *vm)
 	int	i = 1;
 	int	j = 2;
 	int	pc = 0;
-	
+
 	ram = subwin(stdscr, 66, 195, 0, 0);
 	box(ram, ACS_VLINE, ACS_HLINE);
 	while (i < 65)

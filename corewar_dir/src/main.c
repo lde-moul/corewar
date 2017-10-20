@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/20 20:00:26 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/20 20:02:35 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	display_winner(t_vm *vm)
 		vm->players[i2].header.prog_name, vm->players[i2].header.comment);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_vm	vm;
 

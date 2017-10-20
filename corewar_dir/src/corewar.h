@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/20 19:43:48 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/20 20:02:12 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct	s_proc
 	int				r[REG_NUMBER];
 	int				pc;
 	char			carry;
-	// int			id; // Unused?
 	int				cycles;
 	int				lives;
 	int				alive;
