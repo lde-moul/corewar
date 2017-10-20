@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/19 18:52:32 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/20 16:42:17 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define MAX_SPEED 10000
 # define MIN_SPEED 1000000
+# define SPEED_STEP 3000
 
 typedef struct	s_player
 {
