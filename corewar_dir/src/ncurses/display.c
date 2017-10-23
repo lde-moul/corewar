@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/20 20:03:50 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:55:15 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void	display_ram(t_vm *vm)
 		while (j < 193)
 		{
 			attron(COLOR_PAIR(vm->ram_color[pc]));
+			vm->ram_glow[pc] ? attron(WA_BOLD) : 0;
 			printw("%.2x ", vm->ram[pc]);
+			vm->ram_glow[pc] ? attroff(WA_BOLD) : 0;
 			attroff(COLOR_PAIR(vm->ram_color[pc]));
 			++pc;
 			j += 3;
