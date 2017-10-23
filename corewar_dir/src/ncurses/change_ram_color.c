@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   change_ram_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afourcad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 17:55:51 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/16 20:09:34 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/20 20:04:18 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "corewar.h"
 
 void	change_ram_color(t_vm *vm, int pc, int pc_dest)

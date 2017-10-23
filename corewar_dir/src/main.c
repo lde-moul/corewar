@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:59:59 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/19 19:48:41 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:04:30 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,16 @@ void	display_winner(t_vm *vm)
 		vm->players[i2].header.prog_name, vm->players[i2].header.comment);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_vm	vm;
 
 	parse(argc, argv, &vm);
-	vm.visu = 1;
 	init_vm(&vm);
 	if (vm.visu)
 		init_ncurses(&vm);
-	if (vm.visu)
-		display_ram(&vm);
 	handle_main_loop(&vm);
 	display_winner(&vm);
-	// !!! Display winner
-	//	getch();
 	if (vm.visu)
 		endwin();
 	return (0);

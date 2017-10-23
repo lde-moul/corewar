@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   invalid_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/17 16:20:24 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/23 16:05:13 by gdelabro         ###   ########.fr       */
+/*   Created: 2017/10/20 19:41:35 by lde-moul          #+#    #+#             */
+/*   Updated: 2017/10/20 19:56:59 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	cor_fork(t_vm *vm, t_proc *proc, t_instruction *inst)
+int	invalid_int(char *s)
 {
-	create_process(vm, mod_adr(proc->pc + inst->params[0] % IDX_MOD), 0, 1);
-	memcpy(vm->processes->r, proc->r, REG_NUMBER);
-	vm->processes->carry = proc->carry;
-}
+	int	len;
 
-void	cor_lfork(t_vm *vm, t_proc *proc, t_instruction *inst)
-{
-	create_process(vm, mod_adr(proc->pc + inst->params[0]), 0, 1);
-	memcpy(vm->processes->r, proc->r, REG_NUMBER);
-	vm->processes->carry = proc->carry;
+	if (*s == '+')
+		s++;
+	len = ft_strlen(s);
+	if (*s != '-' ?
+	len > 10 || (len == 10 && ft_strncmp(s, "2147483647", 10) > 0) :
+	len > 11 || (len == 11 && ft_strncmp(s, "-2147483648", 11) > 0))
+		return (1);
+	if (*s == '-')
+		s++;
+	while (*s)
+	{
+		if (!(ft_isdigit(*s)))
+			return (1);
+		s++;
+	}
+	return (0);
 }

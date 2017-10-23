@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/19 19:49:02 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:04:09 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define MAX_SPEED 10000
 # define MIN_SPEED 1000000
+# define SPEED_STEP 3000
+# define DISPLAY_FREQUENCY 100000
 
 typedef struct	s_player
 {
@@ -49,7 +51,6 @@ typedef struct	s_proc
 	int				r[REG_NUMBER];
 	int				pc;
 	char			carry;
-	// int			id; // Unused?
 	int				cycles;
 	int				lives;
 	int				alive;
@@ -74,6 +75,7 @@ typedef struct	s_vm
 	int				visu;
 	int				speed;
 	int				pause;
+	struct timeval	last_display;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
@@ -93,6 +95,7 @@ int				check_processes(t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
 void			load_player(t_player *p, const char *name);
+int				invalid_int(char *s);
 
 void			dump_ram(t_vm *vm);
 
@@ -110,6 +113,7 @@ void			change_ram_color(t_vm *vm, int pc, int pc_dest);
 void			display_players(t_vm *vm, WINDOW *info);
 
 void			display_winner(t_vm *vm);
+
 /*
 ** Instructions
 */
@@ -122,12 +126,12 @@ void			cor_or(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			cor_xor(t_vm *vm, t_proc *proc, t_instruction *inst);
 
 void			direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
-void			long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_load(t_vm *vm, t_proc *proc, t_instruction *inst);
+void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 
 void			live(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			zjmp(t_vm *vm, t_proc *proc, t_instruction *inst);
