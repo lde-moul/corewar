@@ -18,7 +18,7 @@ start:
 
 wall_1:
 	live	%0
-	ld		%-1, r1
+	ld		%0, r2
 	st		r2, -24
 	st		r2, -33
 	st		r2, -42

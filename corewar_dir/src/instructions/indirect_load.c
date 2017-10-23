@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 17:36:12 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/19 19:44:35 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:40:16 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst)
 	value = four_octets_to_int(vm->ram,
 		mod_adr(proc->pc + ((param_b + param_a) % IDX_MOD)));
 	proc->r[inst->params[2] - 1] = value;
-	proc->carry = proc->r[inst->params[2] - 1] == 0 ? 1 : 0;
 }
 
 void	long_indirect_load(t_vm *vm, t_proc *proc, t_instruction *inst)

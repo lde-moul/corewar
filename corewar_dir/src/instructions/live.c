@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:26:21 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/20 19:48:47 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:02:23 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 	{
 		if (vm->players[i].number == inst->params[0])
 		{
-			if (!vm->visu)
+			if (!vm->visu && vm->dump_cycle == -1)
 				ft_printf("The player \"%s\" ($%d) is in life !\n",
 					vm->players[i].header.prog_name, inst->params[0]);
 			++(vm->players[i].nb_live);
@@ -33,7 +33,7 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 		}
 		++i;
 	}
-	if (!vm->visu)
+	if (!vm->visu && vm->dump_cycle == -1)
 		ft_printf("The player \"UnknownPlayer\" ($%d) is in life !\n",
 			inst->params[0]);
 }

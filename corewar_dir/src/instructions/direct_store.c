@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/19 19:44:24 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:56:44 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 			= (proc->r[inst->params[0] - 1] & 0x00ff0000) >> 16;
 		vm->ram[mod_adr(proc->pc + (inst->params[1] % IDX_MOD))]
 			= (proc->r[inst->params[0] - 1] & 0xff000000) >> 24;
-		change_ram_color(vm, proc->pc,
-			mod_adr(proc->pc + (inst->params[1] % IDX_MOD)));
+		vm->visu ? change_ram_color(vm, proc->pc,
+			mod_adr(proc->pc + (inst->params[1] % IDX_MOD))) : 0;
 	}
 	else
 		proc->r[inst->params[1] - 1] = proc->r[inst->params[0] - 1];
-	proc->carry = inst->params[0] == 0 ? 1 : 0;
-	display_ram(vm);
+	vm->visu ? display_ram(vm) : 0;
 }
 
 void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
@@ -51,11 +50,10 @@ void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 			(proc->r[inst->params[0] - 1] & 0x00ff0000) >> 16;
 		vm->ram[mod_adr(proc->pc + inst->params[1])] =
 			(proc->r[inst->params[0] - 1] & 0xff000000) >> 24;
-		change_ram_color(vm, proc->pc,
-			mod_adr(proc->pc + (inst->params[1] % IDX_MOD)));
+		vm->visu ? change_ram_color(vm, proc->pc,
+			mod_adr(proc->pc + (inst->params[1] % IDX_MOD))) : 0;
 	}
 	else
 		proc->r[inst->params[1] - 1] = proc->r[inst->params[0] - 1];
-	proc->carry = inst->params[0] == 0 ? 1 : 0;
-	display_ram(vm);
+	vm->visu ? display_ram(vm) : 0;
 }

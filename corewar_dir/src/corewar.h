@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/23 16:04:09 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:47:31 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_proc
 
 typedef struct	s_vm
 {
+	unsigned char	ram_glow[MEM_SIZE];
 	unsigned char	ram[MEM_SIZE];
 	unsigned char	ram_color[MEM_SIZE];
 	t_proc			*processes;
