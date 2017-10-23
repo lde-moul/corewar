@@ -6,13 +6,13 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/20 19:07:56 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:18:58 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	handle_processes(t_vm *vm)
+static void		handle_processes(t_vm *vm)
 {
 	t_proc	*process;
 
@@ -26,7 +26,7 @@ static void	handle_processes(t_vm *vm)
 	}
 }
 
-static int	display_if_needed(t_vm *vm)
+static int		display_if_needed(t_vm *vm)
 {
 	struct timeval	current_time;
 	struct timeval	time_diff;
@@ -44,7 +44,16 @@ static int	display_if_needed(t_vm *vm)
 	return (0);
 }
 
-void		handle_main_loop(t_vm *vm)
+static void		downgrade_glow(t_vm *vm)
+{
+	int i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+		vm->ram_glow[i] ? vm->ram_glow[i] -= 1 : 0;
+}
+
+void			handle_main_loop(t_vm *vm)
 {
 	while (1)
 	{
@@ -52,9 +61,10 @@ void		handle_main_loop(t_vm *vm)
 			return ;
 		if (!vm->pause)
 		{
-			if (vm->cycle == vm->dump_cycle)
+			if (vm->cycle == vm->dump_cycle && !vm->visu)
 				dump_ram(vm);
 			vm->cycle++;
+			downgrade_glow(vm);
 			handle_processes(vm);
 			vm->check_cycles--;
 			if (!vm->check_cycles && !check_processes(vm))

@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:17:26 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/20 16:26:55 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:18:24 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void		init_vm(t_vm *vm)
 	int	i;
 
 	ft_bzero(vm->ram, MEM_SIZE);
+	ft_bzero(vm->ram_glow, MEM_SIZE);
 	ft_memset(vm->ram_color, 1, MEM_SIZE);
 	vm->processes = NULL;
 	i = 0;
