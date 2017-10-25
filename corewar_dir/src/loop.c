@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/23 17:18:58 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:58:08 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static int		display_if_needed(t_vm *vm)
 
 	gettimeofday(&current_time, NULL);
 	timersub(&current_time, &vm->last_display, &time_diff);
-	if (!vm->pause
-		&& (time_diff.tv_sec || time_diff.tv_usec >= DISPLAY_FREQUENCY))
-	{
-		display_ram(vm);
-		gettimeofday(&vm->last_display, NULL);
-	}
 	if (sleep_display(vm))
 		return (1);
+	if ((!vm->pause || vm->sbs))
+	//	//&& (time_diff.tv_sec || time_diff.tv_usec >= DISPLAY_FREQUENCY))
+	{
+		display_ram(vm);
+	//	gettimeofday(&vm->last_display, NULL);
+	}
 	return (0);
 }
 
@@ -57,9 +57,10 @@ void			handle_main_loop(t_vm *vm)
 {
 	while (1)
 	{
+		vm->sbs = 0;
 		if (vm->visu && display_if_needed(vm))
 			return ;
-		if (!vm->pause)
+		if (!vm->pause || vm->sbs)
 		{
 			if (vm->cycle == vm->dump_cycle && !vm->visu)
 				dump_ram(vm);
@@ -73,4 +74,7 @@ void			handle_main_loop(t_vm *vm)
 				usleep(vm->speed);
 		}
 	}
+	vm->visu ? display_ram(vm) : 0;
+	while (vm->visu && getch() != 27)
+		;
 }

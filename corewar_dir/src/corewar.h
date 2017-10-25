@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/23 18:02:30 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 18:45:41 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <sys/time.h>
 # include <ncurses.h>
 
-# define MAX_SPEED 10
+# define MAX_SPEED 1
 # define MIN_SPEED 1000000
 # define SPEED_STEP 3000
 # define DISPLAY_FREQUENCY 100000
@@ -65,6 +65,7 @@ typedef struct	s_vm
 	unsigned char	ram[MEM_SIZE];
 	unsigned char	ram_color[MEM_SIZE];
 	t_proc			*processes;
+	int				num_processes;
 	int				num_players;
 	t_player		players[MAX_PLAYERS];
 	int				cycle_to_die;
@@ -78,6 +79,7 @@ typedef struct	s_vm
 	int				speed;
 	int				pause;
 	struct timeval	last_display;
+	int				sbs;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);

@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:17:26 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/23 17:18:24 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 18:44:21 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		init_vm(t_vm *vm)
 	ft_bzero(vm->ram_glow, MEM_SIZE);
 	ft_memset(vm->ram_color, 1, MEM_SIZE);
 	vm->processes = NULL;
+	vm->num_processes = 0;
 	i = 0;
 	while (i < vm->num_players)
 	{

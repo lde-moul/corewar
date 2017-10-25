@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:26:21 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/23 17:02:23 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 18:39:30 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 {
 	int			i;
 
-	proc->alive = 1;
-	vm->num_lives++;
-	vm->tot_lives++;
 	i = 0;
+			proc->alive = 1;
+			vm->num_lives++;
+			vm->tot_lives++;
 	while (i < vm->num_players)
 	{
 		if (vm->players[i].number == inst->params[0])
