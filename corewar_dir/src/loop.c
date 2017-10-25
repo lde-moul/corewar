@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/23 17:18:58 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 15:52:02 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ void			handle_main_loop(t_vm *vm)
 				usleep(vm->speed);
 		}
 	}
+	while (1);
 }
