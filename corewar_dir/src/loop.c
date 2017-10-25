@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/25 15:52:02 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:08:01 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static int		display_if_needed(t_vm *vm)
 
 	gettimeofday(&current_time, NULL);
 	timersub(&current_time, &vm->last_display, &time_diff);
-	if (!vm->pause
+	if (sleep_display(vm))
+		return (1);
+	if ((!vm->pause || vm->sbs)
 		&& (time_diff.tv_sec || time_diff.tv_usec >= DISPLAY_FREQUENCY))
 	{
 		display_ram(vm);
 		gettimeofday(&vm->last_display, NULL);
 	}
-	if (sleep_display(vm))
-		return (1);
 	return (0);
 }
 
@@ -57,9 +57,10 @@ void			handle_main_loop(t_vm *vm)
 {
 	while (1)
 	{
+		vm->sbs = 0;
 		if (vm->visu && display_if_needed(vm))
 			return ;
-		if (!vm->pause)
+		if (!vm->pause || vm->sbs)
 		{
 			if (vm->cycle == vm->dump_cycle && !vm->visu)
 				dump_ram(vm);
@@ -73,5 +74,7 @@ void			handle_main_loop(t_vm *vm)
 				usleep(vm->speed);
 		}
 	}
-	while (1);
+	display_ram(vm);
+	while (getch() == -1)
+		;
 }

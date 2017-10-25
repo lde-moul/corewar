@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/25 16:08:47 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:59:47 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct	s_vm
 	int				speed;
 	int				pause;
 	struct timeval	last_display;
+	int				sbs;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
