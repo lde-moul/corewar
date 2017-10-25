@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:56:20 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/18 18:49:14 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:44:45 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	kill_process(t_proc *process, t_vm *vm)
 		prev_next = &(*prev_next)->next;
 	*prev_next = process->next;
 	free(process);
+	process = NULL;
 }

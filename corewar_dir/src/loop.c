@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/25 17:08:01 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:58:08 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static int		display_if_needed(t_vm *vm)
 	timersub(&current_time, &vm->last_display, &time_diff);
 	if (sleep_display(vm))
 		return (1);
-	if ((!vm->pause || vm->sbs)
-		&& (time_diff.tv_sec || time_diff.tv_usec >= DISPLAY_FREQUENCY))
+	if ((!vm->pause || vm->sbs))
+	//	//&& (time_diff.tv_sec || time_diff.tv_usec >= DISPLAY_FREQUENCY))
 	{
 		display_ram(vm);
-		gettimeofday(&vm->last_display, NULL);
+	//	gettimeofday(&vm->last_display, NULL);
 	}
 	return (0);
 }
@@ -74,7 +74,7 @@ void			handle_main_loop(t_vm *vm)
 				usleep(vm->speed);
 		}
 	}
-	display_ram(vm);
-	while (getch() == -1)
+	vm->visu ? display_ram(vm) : 0;
+	while (vm->visu && getch() != 27)
 		;
 }

@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:57:37 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/23 16:56:44 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:27:46 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 	}
 	else
 		proc->r[inst->params[1] - 1] = proc->r[inst->params[0] - 1];
-	vm->visu ? display_ram(vm) : 0;
 }
 
 void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
@@ -55,5 +54,4 @@ void	long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 	}
 	else
 		proc->r[inst->params[1] - 1] = proc->r[inst->params[0] - 1];
-	vm->visu ? display_ram(vm) : 0;
 }

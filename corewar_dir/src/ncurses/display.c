@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/25 16:24:10 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:59:00 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	display_info(t_vm *vm)
 	mvwprintw(info, line + 1, 3, "Cycle to Die: %-4d", vm->cycle_to_die);
 	mvwprintw(info, line + 3, 3, "Cycle Delta: %d", CYCLE_DELTA);
 	mvwprintw(info, line + 5, 3, "Total_live: %d", vm->tot_lives);
-	mvwprintw(info, line + 8, 3, "Carry: %d", vm->processes->carry);
+	/*mvwprintw(info, line + 8, 3, "Carry: %d", vm->processes->carry);
 	mvwprintw(info, line + 10, 3, "r1: %.8x", vm->processes->r[0]);
 	mvwprintw(info, line + 11, 3, "r2: %.8x", vm->processes->r[1]);
 	mvwprintw(info, line + 12, 3, "r3: %.8x", vm->processes->r[2]);
-	mvwprintw(info, line + 13, 3, "r4: %.8x", vm->processes->r[3]);
+	mvwprintw(info, line + 13, 3, "r4: %.8x", vm->processes->r[3]);*/
 	wrefresh(info);
 	//display_players(vm, info);
 	delwin(info);
