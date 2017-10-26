@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/26 18:14:48 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/26 19:54:27 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct	s_vm
 	int				pause;
 	struct timeval	last_display;
 	int				sbs;
+	int				win;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);
@@ -117,6 +118,7 @@ void			change_ram_color(t_vm *vm, int pc, int pc_dest);
 void			display_players(t_vm *vm, WINDOW *info, int *line);
 
 void			display_winner(t_vm *vm);
+void			display_winner_ncurse(t_vm *vm, WINDOW *info, int line);
 
 /*
 ** Instructions
