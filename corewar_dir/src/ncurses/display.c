@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/25 18:57:42 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/26 17:23:46 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,14 @@ void	display_info(t_vm *vm)
 {
 	WINDOW	*info;
 	int		line;
-	int		players;
 
-	players = 0;
-	line  = 9;
+	line = 9;
 	info = subwin(stdscr, 66, 70, 0, 195);
 	box(info, ACS_VLINE, ACS_HLINE);
 	mvwprintw(info, 3, 3, "Current_cycle: %d", vm->cycle);
 	mvwprintw(info, 5, 3, "Current_live: %-10d", vm->num_lives);
 	mvwprintw(info, 7, 3, "Processes: %-10d", vm->num_processes);
-	while (players < vm->num_players)
-	{
-		mvwprintw(info, line, 3, "Player (%d): %s",
-				-vm->players[players].number, vm->players[players].header.prog_name);
-		mvwprintw(info, line + 1, 5, "Last live %-10d", vm->players[players].last_live);
-		mvwprintw(info, line + 2, 5, "Number of live: %-10d",
-				vm->players[players].nb_live);
-		++players;
-		line = line + 4;
-	}
+	display_players(vm, info, &line);
 	mvwprintw(info, line + 1, 3, "Cycle to Die: %-4d", vm->cycle_to_die);
 	mvwprintw(info, line + 3, 3, "Cycle Delta: %d", CYCLE_DELTA);
 	mvwprintw(info, line + 5, 3, "Total_live: %d", vm->tot_lives);
@@ -60,7 +49,6 @@ void	display_info(t_vm *vm)
 	mvwprintw(info, line + 12, 3, "r3: %.8x", vm->processes->r[2]);
 	mvwprintw(info, line + 13, 3, "r4: %.8x", vm->processes->r[3]);*/
 	wrefresh(info);
-	display_players(vm, info);
 	delwin(info);
 }
 
