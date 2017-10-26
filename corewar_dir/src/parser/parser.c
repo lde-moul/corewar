@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:21 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/20 19:47:10 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/26 17:20:45 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static void	parse_players(int argc, char **argv, int *i, t_vm *vm)
 			if (invalid_int(argv[*i]))
 				error("Invalid player number\n");
 			vm->players[vm->num_players].number = ft_atoi(argv[(*i)++]);
+			if (*i == argc)
+				error("Missing player name\n");
 		}
 		if (vm->num_players >= MAX_PLAYERS)
 			error("Too many champions\n");
@@ -71,12 +73,12 @@ void		parse(int argc, char **argv, t_vm *vm)
 {
 	int	i;
 
-	if (argc == 1)
+	parse_options(argc, argv, &i, vm);
+	parse_players(argc, argv, &i, vm);
+	if (!vm->num_players)
 	{
-		ft_printf("Usage: ./corewar [-dump nbr_cycles] "
+		ft_printf("Usage: ./corewar [-v] [-dump nbr_cycles] "
 					"[[-n number] champion1.cor] ...");
 		exit(1);
 	}
-	parse_options(argc, argv, &i, vm);
-	parse_players(argc, argv, &i, vm);
 }
