@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/25 18:45:41 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/26 17:22:02 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void			init_ncurses(t_vm *vm);
 int				sleep_display(t_vm *vm);
 void			display_ram(t_vm *vm);
 void			change_ram_color(t_vm *vm, int pc, int pc_dest);
-void			display_players(t_vm *vm, WINDOW *info);
+void			display_players(t_vm *vm, WINDOW *info, int *line);
 
 void			display_winner(t_vm *vm);
 
