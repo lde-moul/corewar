@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/26 17:28:52 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/26 18:14:48 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define MIN_SPEED 1000000
 # define SPEED_STEP 3000
 # define DISPLAY_FREQUENCY 100000
-# define GLOW_CYCLE 50
+# define GLOW_CYCLE 49
 
 typedef struct	s_player
 {
