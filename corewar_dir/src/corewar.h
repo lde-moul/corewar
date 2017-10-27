@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/27 20:46:11 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 20:47:32 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void			ocp_to_param_types(t_instruction *inst, unsigned char ocp);
 int				check_processes(t_vm *vm);
 
 void			parse(int argc, char **argv, t_vm *vm);
-void			load_player(t_player *p, const char *name);
+void			load_player(t_player *p, const char *name, t_vm *vm);
 int				invalid_int(char *s);
 
 void			dump_ram(t_vm *vm);
