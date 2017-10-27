@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 18:23:29 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/26 20:15:18 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 20:42:32 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,11 @@ int		taille_nb(int nb)
 	return (t + i);
 }
 
-int		search_winner(t_vm *vm)
-{
-	int i;
-	int i2;
-
-	i2 = 0;
-	i = -1;
-	while (++i < vm->num_players)
-		vm->players[i].last_live > vm->players[i2].last_live ? i2 = i : 0;
-	return (i2);
-}
-
 void	display_winner_ncurse(t_vm *vm, WINDOW *info, int line)
 {
 	int player_num;
 
-	player_num = search_winner(vm);
+	player_num = vm->winner;
 	wmove(info, line + 10, 3);
 	wprintw(info, "The winner is:");
 	wattron(info, COLOR_PAIR(player_num + 2));
