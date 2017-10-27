@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/27 17:35:04 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 20:27:32 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,19 @@ void	display_pc(t_vm *vm)
 		mvprintw(proc->pc / 64 + 1, proc->pc % 64 * 3 + 2, "%.2x",
 				vm->ram[proc->pc]);
 		attroff(COLOR_PAIR(vm->ram_color[proc->pc] + 5));
-		mvprintw(proc->pc / 64 + 1, proc->pc % 64 * 3 + 4, " ");
 		proc = proc->next;
+	}
+	proc = vm->viewed_process;
+	if (proc)
+	{
+		attron(COLOR_PAIR(11));
+		attron(A_BOLD);
+		attron(A_UNDERLINE);
+		mvprintw(proc->pc / 64 + 1, proc->pc % 64 * 3 + 2, "%.2x",
+			vm->ram[proc->pc]);
+		attroff(A_UNDERLINE);
+		attroff(A_BOLD);
+		attroff(COLOR_PAIR(11));
 	}
 }
 
@@ -43,12 +54,10 @@ void	display_info(t_vm *vm)
 	mvwprintw(info, line + 1, 3, "Cycle to Die: %-4d", vm->cycle_to_die);
 	mvwprintw(info, line + 3, 3, "Cycle Delta: %d", CYCLE_DELTA);
 	mvwprintw(info, line + 5, 3, "Total_live: %d", vm->tot_lives);
+	if (vm->viewed_process)
+		mvwprintw(info, line + 7, 3, "Viewed process: %d",
+		vm->viewed_process->id);
 	vm->win ? display_winner_ncurse(vm, info, line + 5) : 0;
-	/*mvwprintw(info, line + 8, 3, "Carry: %d", vm->processes->carry);
-	mvwprintw(info, line + 10, 3, "r1: %.8x", vm->processes->r[0]);
-	mvwprintw(info, line + 11, 3, "r2: %.8x", vm->processes->r[1]);
-	mvwprintw(info, line + 12, 3, "r3: %.8x", vm->processes->r[2]);
-	mvwprintw(info, line + 13, 3, "r4: %.8x", vm->processes->r[3]);*/
 	wrefresh(info);
 	delwin(info);
 }

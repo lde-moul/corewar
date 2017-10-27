@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/26 19:54:27 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 19:30:38 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_proc
 	int				lives;
 	int				alive;
 	char			opcode;
+	int				id;
 	struct s_proc	*next;
 }				t_proc;
 
@@ -75,12 +76,13 @@ typedef struct	s_vm
 	int				checks;
 	int				cycle;
 	int				dump_cycle;
+	int				win;
 	int				visu;
 	int				speed;
 	int				pause;
 	struct timeval	last_display;
 	int				sbs;
-	int				win;
+	t_proc			*viewed_process;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);

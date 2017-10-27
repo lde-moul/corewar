@@ -6,13 +6,35 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 17:42:12 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/25 16:59:23 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 20:07:40 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	sleep_display(t_vm *vm)
+static void	decrease_viewed_process(t_vm *vm)
+{
+	t_proc	*proc;
+
+	proc = vm->processes;
+	while (proc && proc->next != vm->viewed_process)
+	{
+		proc = proc->next;
+	}
+	vm->viewed_process = proc;
+	display_ram(vm);
+}
+
+static void increase_viewed_process(t_vm *vm)
+{
+	if (vm->viewed_process)
+		vm->viewed_process = vm->viewed_process->next;
+	else
+		vm->viewed_process = vm->processes;
+	display_ram(vm);
+}
+
+int			sleep_display(t_vm *vm)
 {
 	int	key;
 
@@ -32,5 +54,9 @@ int	sleep_display(t_vm *vm)
 		vm->speed = MIN_SPEED;
 	else if (key == 's')
 		vm->sbs = 1;
+	else if (key == ',')
+		decrease_viewed_process(vm);
+	else if (key == '.')
+		increase_viewed_process(vm);
 	return (0);
 }
