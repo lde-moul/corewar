@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:09 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/26 16:50:31 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 20:42:10 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,27 @@ static void	error(const char *msg, const char *name)
 	exit(1);
 }
 
-void		load_player(t_player *p, const char *name)
+static void	check_player_number(int number, t_vm *vm)
+{
+	int	i;
+
+	i = 0;
+	while (i < vm->num_players)
+	{
+		if (number == vm->players[i].number)
+		{
+			ft_printf("Duplicate player number %d\n", number);
+			exit(1);
+		}
+		i++;
+	}
+}
+
+void		load_player(t_player *p, const char *name, t_vm *vm)
 {
 	int	file;
 
+	check_player_number(p->number, vm);
 	file = open(name, O_RDONLY);
 	if (file < 0)
 		error("Can't open \"%s\"\n", name);
