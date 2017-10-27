@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/27 17:32:49 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 22:34:26 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	if (inst.opcode < 1 || inst.opcode > 16)
 	{
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
-		pre_execute_instruction(proc, vm);
+		//pre_execute_instruction(proc, vm);
 		return ;
 	}
 	pc = (proc->pc + 1) % MEM_SIZE;
@@ -130,7 +130,7 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	exec_instr2(vm, &inst, &pc);
 	!inst.invalid ? g_op_functions[inst.opcode - 1](vm, proc, &inst) : 0;
 	!(inst.opcode == 9 && proc->carry) || inst.invalid ? proc->pc = pc : 0;
-	pre_execute_instruction(proc, vm);
+	//pre_execute_instruction(proc, vm);
 }
 
 void	pre_execute_instruction(t_proc *proc, t_vm *vm)
