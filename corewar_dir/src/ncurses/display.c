@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/26 19:56:59 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 17:35:04 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,24 @@ void	display_info(t_vm *vm)
 	delwin(info);
 }
 
+void	creat_first_win(WINDOW **ram, int *i, int *j, int *pc)
+{
+	*ram = subwin(stdscr, 66, 195, 0, 0);
+	box(*ram, ACS_VLINE, ACS_HLINE);
+	*i = 0;
+	*j = 2;
+	*pc = 0;
+}
+
 void	display_ram(t_vm *vm)
 {
-	WINDOW *ram;
-	int	i = 1;
-	int	j = 2;
-	int	pc = 0;
+	WINDOW	*ram;
+	int		i;
+	int		j;
+	int		pc;
 
-	ram = subwin(stdscr, 66, 195, 0, 0);
-	box(ram, ACS_VLINE, ACS_HLINE);
-	while (i < 65)
+	creat_first_win(&ram, &i, &j, &pc);
+	while (++i < 65 && (j = 2))
 	{
 		move(i, 2);
 		while (j < 193)
@@ -75,8 +83,6 @@ void	display_ram(t_vm *vm)
 			++pc;
 			j += 3;
 		}
-		++i;
-		j = 2;
 	}
 	display_info(vm);
 	display_pc(vm);

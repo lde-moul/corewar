@@ -6,13 +6,13 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/26 16:46:48 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 17:32:49 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-// // !!!
+/*// // !!!
 // static char *sub_ocp(char sub_ocp)
 // {
 // 	switch (sub_ocp)
@@ -44,7 +44,7 @@
 // 		printf("Param 2: %8s, %d\n", sub_ocp(inst->param_types[1]), inst->params[1]);
 // 	if (inst->param_types[2])
 // 		printf("Param 3: %8s, %d\n", sub_ocp(inst->param_types[2]), inst->params[2]);
-// }
+// }*/
 
 static void	tab_to_param_types(char param_types[3], char arg[3])
 {
@@ -98,6 +98,13 @@ static void	read_param(t_instruction *inst, int n,
 	}
 }
 
+void		exec_instr2(t_vm *vm, t_instruction *inst, int *pc)
+{
+	read_param(inst, 0, vm->ram, pc);
+	read_param(inst, 1, vm->ram, pc);
+	read_param(inst, 2, vm->ram, pc);
+}
+
 void		execute_instruction(t_proc *proc, t_vm *vm)
 {
 	t_instruction	inst;
@@ -120,13 +127,9 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	}
 	else
 		tab_to_param_types(inst.param_types, op_tab[inst.opcode - 1].arg);
-	read_param(&inst, 0, vm->ram, &pc);
-	read_param(&inst, 1, vm->ram, &pc);
-	read_param(&inst, 2, vm->ram, &pc);
-	if (!inst.invalid)
-		g_op_functions[inst.opcode - 1](vm, proc, &inst);
-	if (!(inst.opcode == 9 && proc->carry) || inst.invalid)
-		proc->pc = pc;
+	exec_instr2(vm, &inst, &pc);
+	!inst.invalid ? g_op_functions[inst.opcode - 1](vm, proc, &inst) : 0;
+	!(inst.opcode == 9 && proc->carry) || inst.invalid ? proc->pc = pc : 0;
 	pre_execute_instruction(proc, vm);
 }
 
