@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 18:23:29 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/27 20:42:32 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/27 21:51:52 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,23 @@ int		taille_nb(int nb)
 	return (t + i);
 }
 
+void	display_process(t_vm *vm, WINDOW *info, int line)
+{
+
+}
+
 void	display_winner_ncurse(t_vm *vm, WINDOW *info, int line)
 {
 	int player_num;
 
 	player_num = vm->winner;
-	wmove(info, line + 10, 3);
+	wmove(info, line + 15, 3);
 	wprintw(info, "The winner is:");
 	wattron(info, COLOR_PAIR(player_num + 2));
 	wattron(info, WA_BOLD);
 	wprintw(info, " %.51s",
 			vm->players[player_num].header.prog_name);
-	wmove(info, line + 12, 3);
+	wmove(info, line + 17, 3);
 	wattroff(info, COLOR_PAIR(player_num + 2));
 	wattroff(info, WA_BOLD);
 	wprintw(info, "Press ESC to finish.");

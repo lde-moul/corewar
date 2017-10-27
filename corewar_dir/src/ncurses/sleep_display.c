@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 17:42:12 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/27 20:07:40 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/27 21:02:08 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int			sleep_display(t_vm *vm)
 		vm->speed = MIN_SPEED;
 	else if (key == 's')
 		vm->sbs = 1;
-	else if (key == ',')
-		decrease_viewed_process(vm);
 	else if (key == '.')
+		decrease_viewed_process(vm);
+	else if (key == ',')
 		increase_viewed_process(vm);
 	return (0);
 }
