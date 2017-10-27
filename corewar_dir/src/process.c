@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:56:20 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/25 18:45:20 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/27 20:11:29 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	create_process(t_vm *vm, int pc, int player_num, int no_init)
 {
-	t_proc	*process;
+	static int	id = 0;
+	t_proc		*process;
 
 	process = (t_proc*)malloc(sizeof(t_proc));
 	if (!process)
@@ -22,6 +23,7 @@ void	create_process(t_vm *vm, int pc, int player_num, int no_init)
 	vm->num_processes++;
 	process->next = vm->processes;
 	vm->processes = process;
+	process->id = id++;
 	process->pc = pc;
 	pre_execute_instruction(process, vm);
 	process->alive = 0;
@@ -42,5 +44,6 @@ void	kill_process(t_proc *process, t_vm *vm)
 	*prev_next = process->next;
 	free(process);
 	vm->num_processes--;
-	process = NULL;
+	if (vm->viewed_process == process)
+		vm->viewed_process = NULL;
 }
