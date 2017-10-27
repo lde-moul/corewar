@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/27 19:30:38 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/27 20:46:11 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct	s_vm
 	struct timeval	last_display;
 	int				sbs;
 	t_proc			*viewed_process;
+	int				winner;
 }				t_vm;
 
 void			(*g_op_functions[16])(t_vm*, t_proc*, t_instruction*);

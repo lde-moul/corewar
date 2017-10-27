@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:26:21 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/27 20:20:34 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/10/27 20:39:14 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 					vm->players[i].header.prog_name, inst->params[0]);*/
 			++(vm->players[i].nb_live);
 			vm->players[i].last_live = vm->cycle;
-			vm->win = vm->players[i].number;
+			vm->winner = i;
 			return ;
 		}
 		++i;
