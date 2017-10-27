@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:56:20 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/27 20:11:29 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/27 21:14:10 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	create_process(t_vm *vm, int pc, int player_num, int no_init)
 {
-	static int	id = 0;
+	static int	id = 1;
 	t_proc		*process;
 
 	process = (t_proc*)malloc(sizeof(t_proc));

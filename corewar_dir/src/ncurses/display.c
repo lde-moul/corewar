@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/27 20:27:32 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/27 21:23:41 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ void	display_info(t_vm *vm)
 	mvwprintw(info, line + 3, 3, "Cycle Delta: %d", CYCLE_DELTA);
 	mvwprintw(info, line + 5, 3, "Total_live: %d", vm->tot_lives);
 	if (vm->viewed_process)
-		mvwprintw(info, line + 7, 3, "Viewed process: %d",
-		vm->viewed_process->id);
+		mvwprintw(info, line + 7, 3,
+		"Viewed process: %-10d", vm->viewed_process->id);
+	else
+		mvwprintw(info, line + 7, 3, "Viewed process: None      ");
 	vm->win ? display_winner_ncurse(vm, info, line + 5) : 0;
 	wrefresh(info);
 	delwin(info);
