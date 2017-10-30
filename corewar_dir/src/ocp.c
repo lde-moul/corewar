@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:06:30 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/30 19:16:01 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/30 19:40:31 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@
 	pt = inst->param_types;
 	arg = op_tab[inst->opcode - 1].arg;
 	pt[0] = ocp >> 6;
-	if (!pt[0] != !arg[0] || (pt[0] && !((arg[0] & (1 << (pt[0] - 1))))))
+	pt[1] = op_tab[inst->opcode - 1].nb_param >= 2 ? ((ocp >> 4) & 3) : 0;
+	pt[2] = op_tab[inst->opcode - 1].nb_param >= 3 ? ((ocp >> 2) & 3) : 0;
+	if (!pt[0] || !(arg[0] & (1 << (pt[0] - 1))))
 		inst->invalid = 1;
-	pt[1] = (ocp >> 4) & 3;
-	if (!pt[1] != !arg[1] || (pt[1] && !((arg[1] & (1 << (pt[1] - 1))))))
+	if (op_tab[inst->opcode - 1].nb_param < 2)
+		return ;
+	if (!pt[1] || (pt[1] && !(arg[1] & (1 << (pt[1] - 1)))))
 		inst->invalid = 1;
-	pt[2] = (ocp >> 2) & 3;
-	if (!pt[2] != !arg[2] || (pt[2] && !((arg[2] & (1 << (pt[2] - 1))))))
-		inst->invalid = 1;
-	if (ocp & 3)
+	if (op_tab[inst->opcode - 1].nb_param < 3)
+		return ;
+	if (!pt[2] || (pt[2] && !(arg[2] & (1 << (pt[2] - 1)))))
 		inst->invalid = 1;
 }*/
 
