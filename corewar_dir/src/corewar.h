@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/27 21:15:09 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/30 16:35:31 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct	s_vm
 	int				checks;
 	int				cycle;
 	int				dump_cycle;
+	int				show_lives;
 	int				win;
 	int				visu;
 	int				speed;

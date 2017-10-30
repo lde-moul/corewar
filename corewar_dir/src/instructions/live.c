@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:26:21 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/27 20:54:29 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/30 16:55:53 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 	{
 		if (vm->players[i].number == inst->params[0])
 		{
-			if (!vm->visu && vm->dump_cycle == -1)
+			if (vm->show_lives && !vm->visu && vm->dump_cycle == -1)
 				ft_printf("The player \"%s\" ($%d) is in life !\n",
 					vm->players[i].header.prog_name, inst->params[0]);
-/*			else
+			else if (vm->show_lives)
 				mvprintw(60, 200, "The player \"%s\" ($%d) is in life !\n",
-					vm->players[i].header.prog_name, inst->params[0]);*/
+					vm->players[i].header.prog_name, inst->params[0]);
 			++(vm->players[i].nb_live);
 			vm->players[i].last_live = vm->cycle;
 			vm->winner = i;
@@ -37,10 +37,7 @@ void	live(t_vm *vm, t_proc *proc, t_instruction *inst)
 		}
 		++i;
 	}
-	if (!vm->visu && vm->dump_cycle == -1)
-		ft_printf("The player \"UnknownPlayer\" ($%d) is in life !\n",
-			inst->params[0]);
-	//else
-	//	mvprintw(60, 200, "The player \"%s\" ($%d) is in life !\n",
-	//		vm->players[i].header.prog_name, inst->params[0]);
+	if (vm->show_lives)
+		mvprintw(60, 200, "The player \"%s\" ($%d) is in life !\n",
+			vm->players[i].header.prog_name, inst->params[0]);
 }

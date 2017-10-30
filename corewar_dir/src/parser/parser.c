@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 14:56:21 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/27 20:42:42 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/30 16:52:51 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	parse_dump(int argc, char **argv, int *i, t_vm *vm)
 static void	parse_options(int argc, char **argv, int *i, t_vm *vm)
 {
 	vm->dump_cycle = -1;
+	vm->show_lives = 1;
 	vm->visu = 0;
 	*i = 1;
 	while (*i < argc)
@@ -39,6 +40,8 @@ static void	parse_options(int argc, char **argv, int *i, t_vm *vm)
 			parse_dump(argc, argv, i, vm);
 		else if (!ft_strcmp(argv[*i], "-v"))
 			vm->visu = 1;
+		else if (!ft_strcmp(argv[*i], "-s"))
+			vm->show_lives = 0;
 		else
 			return ;
 		(*i)++;
