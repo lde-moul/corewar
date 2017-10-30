@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/27 17:32:49 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/30 15:45:51 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,15 @@ static void	read_param(t_instruction *inst, int n,
 	}
 }
 
-void		exec_instr2(t_vm *vm, t_instruction *inst, int *pc)
+static void	execute_instruction2(t_instruction *inst, t_proc *proc, int *pc, t_vm *vm)
 {
 	read_param(inst, 0, vm->ram, pc);
 	read_param(inst, 1, vm->ram, pc);
 	read_param(inst, 2, vm->ram, pc);
+	if (!inst->invalid)
+		g_op_functions[inst->opcode - 1](vm, proc, inst);
+	if (!(inst->opcode == 9 && proc->carry) || inst->invalid)
+		proc->pc = *pc;
 }
 
 void		execute_instruction(t_proc *proc, t_vm *vm)
@@ -127,10 +131,7 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	}
 	else
 		tab_to_param_types(inst.param_types, op_tab[inst.opcode - 1].arg);
-	exec_instr2(vm, &inst, &pc);
-	!inst.invalid ? g_op_functions[inst.opcode - 1](vm, proc, &inst) : 0;
-	!(inst.opcode == 9 && proc->carry) || inst.invalid ? proc->pc = pc : 0;
-	pre_execute_instruction(proc, vm);
+	execute_instruction2(&inst, proc, &pc, vm);
 }
 
 void	pre_execute_instruction(t_proc *proc, t_vm *vm)
