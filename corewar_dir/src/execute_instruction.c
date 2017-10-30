@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/30 15:55:34 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/30 18:09:11 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ static void	read_param(t_instruction *inst, int n,
 	}
 }
 
-static void	execute_instruction2(t_instruction *inst, t_proc *proc, int *pc, t_vm *vm)
+static void	execute_instruction2(t_instruction *inst, t_proc *proc, int *pc,
+		t_vm *vm)
 {
 	read_param(inst, 0, vm->ram, pc);
 	read_param(inst, 1, vm->ram, pc);
@@ -118,7 +119,6 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	if (inst.opcode < 1 || inst.opcode > 16)
 	{
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
-		//pre_execute_instruction(proc, vm);
 		return ;
 	}
 	pc = (proc->pc + 1) % MEM_SIZE;
