@@ -6,11 +6,23 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 18:23:29 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/27 22:19:17 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/31 18:27:36 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+void	clear_viewed(t_vm *vm, WINDOW *info, int line)
+{
+	(void)vm;
+	mvwprintw(info, line + 8, 6, "%63c", ' ');
+	mvwprintw(info, line + 9, 6, "%63c", ' ');
+	mvwprintw(info, line + 10, 6, "%63c", ' ');
+	mvwprintw(info, line + 11, 6, "%63c", ' ');
+	mvwprintw(info, line + 12, 6, "%63c", ' ');
+	mvwprintw(info, line + 13, 6, "%63c", ' ');
+	mvwprintw(info, line + 14, 6, "%63c", ' ');
+}
 
 int		taille_nb(int nb)
 {

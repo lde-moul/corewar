@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/30 20:38:05 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:40:47 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static void		downgrade_glow(t_vm *vm)
 	i = -1;
 	while (++i < MEM_SIZE)
 	{
-		vm->ram_glow[i] ? vm->ram_glow[i] -= 1 :
-			(vm->ram_viewed[i] = 0);
+		vm->ram_glow[i] ? vm->ram_glow[i] -= 1 : 0;
+		!vm->ram_glow[i] ? (vm->ram_viewed[i] = 0) : 0;
 	}
 }
 
