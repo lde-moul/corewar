@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 17:19:42 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/30 20:41:33 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/31 17:38:14 by afourcad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_ncurses(t_vm *vm)
 	noecho();
 	start_color();
 	cbreak();
+	keypad(stdscr, TRUE);
 	curs_set(0);
 	nodelay(stdscr, 1);
 	vm->speed = 20000;
