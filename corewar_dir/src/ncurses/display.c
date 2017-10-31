@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/30 15:57:08 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/30 20:48:22 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,13 @@ void	display_ram(t_vm *vm)
 		move(i, 2);
 		while (j < 193)
 		{
-			attron(COLOR_PAIR(vm->ram_color[pc]));
+			!(vm->viewed_process && vm->viewed_process->id == vm->ram_viewed[pc])
+			? attron(COLOR_PAIR(vm->ram_color[pc])) : attron(COLOR_PAIR(12));
 			vm->ram_glow[pc] ? attron(WA_BOLD) : 0;
 			printw("%.2x ", vm->ram[pc]);
 			vm->ram_glow[pc] ? attroff(WA_BOLD) : 0;
-			attroff(COLOR_PAIR(vm->ram_color[pc]));
+			!(vm->viewed_process && vm->viewed_process->id == vm->ram_viewed[pc])
+			? attroff(COLOR_PAIR(vm->ram_color[pc])) : attroff(COLOR_PAIR(12));
 			++pc;
 			j += 3;
 		}

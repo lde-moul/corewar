@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 17:19:42 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/27 20:21:27 by lde-moul         ###   ########.fr       */
+/*   Updated: 2017/10/30 20:41:33 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_ncurses(t_vm *vm)
 	init_pair(9, COLOR_WHITE, COLOR_YELLOW);
 	init_pair(10, COLOR_WHITE, COLOR_BLUE);
 	init_pair(11, COLOR_WHITE, COLOR_MAGENTA);
+	init_pair(12, COLOR_MAGENTA, COLOR_BLACK);
 	display_ram(vm);
 	//gettimeofday(&vm->last_display, NULL);
 }

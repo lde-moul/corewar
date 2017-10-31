@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 17:36:04 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/26 17:59:05 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/30 20:42:25 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ void	indirect_store(t_vm *vm, t_proc *proc, t_instruction *inst)
 	vm->ram[mod_adr(proc->pc + (param_2 + param_3 % IDX_MOD))]
 		= (proc->r[inst->params[0] - 1] & 0xff000000) >> 24;
 	vm->visu ? change_ram_color(vm, proc->pc,
-		mod_adr(proc->pc + (param_2 + param_3 % IDX_MOD))) : 0;
+		mod_adr(proc->pc + (param_2 + param_3 % IDX_MOD)), proc->id) : 0;
 }

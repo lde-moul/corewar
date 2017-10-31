@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:52:07 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/26 16:46:45 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/30 19:57:08 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	dump_ram(t_vm *vm)
 
 	i = -1;
 	while (++i < MEM_SIZE)
-		ft_printf("%.2x%c", vm->ram[i], (i + 1) % 32 == 0 ? '\n' : ' ');
+	{
+		i % 32 == 0 ? ft_printf("0x%.4x : ", i) : 0;
+		ft_printf("%.2x ", vm->ram[i]);
+		(i + 1) % 32 == 0 ? ft_putendl("") : 0;
+	}
 	exit(1);
 }
