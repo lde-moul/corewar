@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:56:20 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/30 19:40:12 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/31 17:12:58 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	create_process(t_vm *vm, int pc, int player_num, int no_init)
 	process->id = id++;
 	process->pc = pc;
 	pre_execute_instruction(process, vm);
-	process->alive = 0;
 	if (no_init)
 		return ;
+	process->alive = 0;
 	process->r[0] = player_num;
 	bzero(&process->r[1], (REG_NUMBER - 1) * sizeof(int));
 	process->carry = 0;
