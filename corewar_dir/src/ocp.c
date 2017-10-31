@@ -6,13 +6,13 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:06:30 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/31 16:38:23 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/10/31 18:29:52 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	ocp_to_param_types(t_instruction *inst, unsigned char ocp)
+/*void	ocp_to_param_types(t_instruction *inst, unsigned char ocp)
 {
 	t_arg_type	*pt;
 	char		*arg;
@@ -32,9 +32,9 @@ void	ocp_to_param_types(t_instruction *inst, unsigned char ocp)
 		return ;
 	if (!pt[2] || (pt[2] && !(arg[2] & (1 << (pt[2] - 1)))))
 		inst->invalid = 1;
-}
+}*/
 
-/*void	test_valid_param(t_instruction *inst, t_op o)
+void	test_valid_param(t_instruction *inst, t_op o)
 {
 	int i;
 	int v;
@@ -65,4 +65,4 @@ void	ocp_to_param_types(t_instruction *inst, unsigned char ocp)
 	pt[1] = o.nb_param >= 2 ? (ocp >> 4) & 3 : 0;
 	pt[2] = o.nb_param >= 3 ? (ocp >> 2) & 3 : 0;
 	test_valid_param(inst, o);
-}*/
+}
