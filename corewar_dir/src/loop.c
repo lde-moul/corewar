@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/31 16:40:47 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 09:41:08 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@ static void		handle_processes(t_vm *vm)
 	process = vm->processes;
 	while (process)
 	{
+		if (!process->cycles)
+			pre_execute_instruction(process, vm);
 		process->cycles--;
 		if (!process->cycles)
 			execute_instruction(process, vm);
 		process = process->next;
 	}
-	process = vm->processes;
+	/*process = vm->processes;
 	while (process)
 	{
-		if (!process->cycles)
+		if (process->exec)
 			pre_execute_instruction(process, vm);
 		process = process->next;
-	}
+	}*/
 }
 
 static int		display_if_needed(t_vm *vm)
