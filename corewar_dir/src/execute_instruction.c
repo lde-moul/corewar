@@ -6,45 +6,11 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/11/01 15:59:24 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 17:05:32 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-/*// // !!!
-// static char *sub_ocp(char sub_ocp)
-// {
-// 	switch (sub_ocp)
-// 	{
-// 		case 0: return "none"; break ;
-// 		case REG_CODE: return "register"; break ;
-// 		case DIR_CODE: return "direct"; break ;
-// 		case IND_CODE: return "index"; break ;
-// 		default: return "invalid"; break ;
-// 	}
-// }
-//
-// // !!!
-// static void print_ocp(char ocp)
-// {
-// 	printf("ocp: %s, ", sub_ocp((ocp >> 6) & 3));
-// 	printf("ocp: %s, ", sub_ocp((ocp >> 4) & 3));
-// 	printf("ocp: %s\n", sub_ocp((ocp >> 2) & 3));
-// }
-//
-// // !!!
-// static void print_instruction_info(t_instruction *inst)
-// {
-// 	printf("Opcode: %s (%d)\n", op_tab[inst->opcode - 1].name, inst->opcode);
-// 	// print_ocp(inst->ocp);
-//
-// 	printf("Param 1: %8s, %d\n", sub_ocp(inst->param_types[0]), inst->params[0]);
-// 	if (inst->param_types[1])
-// 		printf("Param 2: %8s, %d\n", sub_ocp(inst->param_types[1]), inst->params[1]);
-// 	if (inst->param_types[2])
-// 		printf("Param 3: %8s, %d\n", sub_ocp(inst->param_types[2]), inst->params[2]);
-// }*/
 
 static void	tab_to_param_types(char param_types[3], char arg[3])
 {
@@ -134,7 +100,7 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	execute_instruction2(&inst, proc, &pc, vm);
 }
 
-void	pre_execute_instruction(t_proc *proc, t_vm *vm)
+void		pre_execute_instruction(t_proc *proc, t_vm *vm)
 {
 	proc->opcode = vm->ram[proc->pc];
 	proc->cycles = proc->opcode > 0 && proc->opcode <= 16 ?

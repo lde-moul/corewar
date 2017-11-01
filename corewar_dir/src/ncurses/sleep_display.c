@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 17:42:12 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/27 21:02:08 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 17:03:57 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	decrease_viewed_process(t_vm *vm)
 	display_ram(vm);
 }
 
-static void increase_viewed_process(t_vm *vm)
+static void	increase_viewed_process(t_vm *vm)
 {
 	if (vm->viewed_process)
 		vm->viewed_process = vm->viewed_process->next;

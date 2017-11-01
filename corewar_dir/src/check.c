@@ -6,13 +6,13 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 18:11:49 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/10/19 16:51:36 by afourcad         ###   ########.fr       */
+/*   Updated: 2017/11/01 16:43:57 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	check_processes(t_vm *vm)
+int		check_processes(t_vm *vm)
 {
 	t_proc	*process;
 	t_proc	*next;

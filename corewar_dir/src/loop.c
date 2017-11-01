@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/11/01 09:41:08 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 17:04:46 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@ static void		handle_processes(t_vm *vm)
 			execute_instruction(process, vm);
 		process = process->next;
 	}
-	/*process = vm->processes;
-	while (process)
-	{
-		if (process->exec)
-			pre_execute_instruction(process, vm);
-		process = process->next;
-	}*/
 }
 
 static int		display_if_needed(t_vm *vm)
@@ -44,11 +37,7 @@ static int		display_if_needed(t_vm *vm)
 	timersub(&current_time, &vm->last_display, &time_diff);
 	if (sleep_display(vm))
 		return (1);
-	// if (time_diff.tv_sec || time_diff.tv_usec >= DISPLAY_FREQUENCY))
-	// {
-		display_ram(vm);
-	// gettimeofday(&vm->last_display, NULL);
-	// }
+	display_ram(vm);
 	return (0);
 }
 

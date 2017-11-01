@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 17:51:24 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/31 18:32:01 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 17:04:17 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,30 @@ void	display_info(t_vm *vm)
 	delwin(info);
 }
 
-void	creat_first_win(WINDOW **ram, int *i, int *j, int *pc)
+void	display_ram_win(WINDOW *ram, int i, int j, t_vm *vm)
 {
-	*ram = subwin(stdscr, 66, 195, 0, 0);
-	box(*ram, ACS_VLINE, ACS_HLINE);
-	*i = 0;
-	*j = 2;
-	*pc = 0;
+	int		pc;
+
+	box(ram, ACS_VLINE, ACS_HLINE);
+	pc = 0;
+	while (++i < 65 && (j = 2))
+	{
+		move(i, 2);
+		while (j < 193)
+		{
+			!(vm->viewed_process && vm->viewed_process->id
+					== vm->ram_viewed[pc])
+			? attron(COLOR_PAIR(vm->ram_color[pc])) : attron(COLOR_PAIR(12));
+			vm->ram_glow[pc] ? attron(WA_BOLD) : 0;
+			printw("%.2x ", vm->ram[pc]);
+			vm->ram_glow[pc] ? attroff(WA_BOLD) : 0;
+			!(vm->viewed_process && vm->viewed_process->id
+					== vm->ram_viewed[pc])
+			? attroff(COLOR_PAIR(vm->ram_color[pc])) : attroff(COLOR_PAIR(12));
+			++pc;
+			j += 3;
+		}
+	}
 }
 
 void	display_ram(t_vm *vm)
@@ -105,25 +122,11 @@ void	display_ram(t_vm *vm)
 	WINDOW	*ram;
 	int		i;
 	int		j;
-	int		pc;
 
-	creat_first_win(&ram, &i, &j, &pc);
-	while (++i < 65 && (j = 2))
-	{
-		move(i, 2);
-		while (j < 193)
-		{
-			!(vm->viewed_process && vm->viewed_process->id == vm->ram_viewed[pc])
-			? attron(COLOR_PAIR(vm->ram_color[pc])) : attron(COLOR_PAIR(12));
-			vm->ram_glow[pc] ? attron(WA_BOLD) : 0;
-			printw("%.2x ", vm->ram[pc]);
-			vm->ram_glow[pc] ? attroff(WA_BOLD) : 0;
-			!(vm->viewed_process && vm->viewed_process->id == vm->ram_viewed[pc])
-			? attroff(COLOR_PAIR(vm->ram_color[pc])) : attroff(COLOR_PAIR(12));
-			++pc;
-			j += 3;
-		}
-	}
+	ram = subwin(stdscr, 66, 195, 0, 0);
+	i = 0;
+	j = 2;
+	display_ram_win(ram, i, j, vm);
 	display_info(vm);
 	display_pc(vm);
 	curs_set(0);

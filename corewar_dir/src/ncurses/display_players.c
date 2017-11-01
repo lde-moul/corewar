@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 18:23:29 by afourcad          #+#    #+#             */
-/*   Updated: 2017/10/31 18:27:36 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 16:56:46 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ int		taille_nb(int nb)
 	}
 	return (t + i);
 }
-
-/*void	display_process(t_vm *vm, WINDOW *info, int line)
-{
-
-}*/
 
 void	display_winner_ncurse(t_vm *vm, WINDOW *info, int line)
 {
