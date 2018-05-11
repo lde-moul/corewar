@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 19:15:53 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/09 18:45:29 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/02 16:28:39 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	write_arg(t_asm *e)
 		nb = swap_int(e->u.value[i]);
 		nb1 = swap_short(e->u.value[i]);
 		nb2 = e->u.value[i];
-		(e->u.t_arg[i] == T_DIR && op_tab[e->u.i].d2) || e->u.t_arg[i] == T_IND
+		(e->u.t_arg[i] == T_DIR && g_op[e->u.i].d2) || e->u.t_arg[i] == T_IND
 			? write(e->fd, &nb1, 2) : 0;
-		e->u.t_arg[i] == T_DIR && !op_tab[e->u.i].d2 ? write(e->fd, &nb, 4) : 0;
+		e->u.t_arg[i] == T_DIR && !g_op[e->u.i].d2 ? write(e->fd, &nb, 4) : 0;
 		e->u.t_arg[i] == T_REG ? write(e->fd, &nb2, 1) : 0;
 	}
 }

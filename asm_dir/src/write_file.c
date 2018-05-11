@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 18:41:42 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/12 18:22:33 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/02 16:28:55 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	write_ocp(t_asm *e)
 
 	i = -1;
 	ocp = 0;
-	if (!op_tab[e->u.i].ocp)
+	if (!g_op[e->u.i].ocp)
 		return ;
 	while (++i < e->u.nb_param)
 	{
@@ -35,7 +35,7 @@ void	write_ocp(t_asm *e)
 
 void	write_instruction(t_asm *e)
 {
-	write(e->fd, &op_tab[e->u.i].id, 1);
+	write(e->fd, &g_op[e->u.i].id, 1);
 	write_ocp(e);
 	write_arg(e);
 }

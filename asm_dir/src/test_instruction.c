@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 17:26:21 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/09 18:45:26 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/02 16:28:18 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	free_instruction(t_asm *e)
 void	fill_nb_param(t_asm *e)
 {
 	e->u.i = -1;
-	while (++e->u.i < 16 && ft_strcmp(op_tab[e->u.i].name, e->u.name))
+	while (++e->u.i < 16 && ft_strcmp(g_op[e->u.i].name, e->u.name))
 		;
 	e->u.i == 16 ? ft_exit(6) : 0;
-	e->u.nb_param = op_tab[e->u.i].nb_param;
+	e->u.nb_param = g_op[e->u.i].nb_param;
 }
 
 void	fill_param(char *line, t_asm *e)

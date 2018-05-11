@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:22:51 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/11/01 17:05:32 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/02 16:30:57 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	read_param(t_instruction *inst, int n,
 			inst->invalid = 1;
 		*pc = (*pc + 1) % MEM_SIZE;
 	}
-	else if (inst->param_types[n] == IND_CODE || op_tab[inst->opcode - 1].d2)
+	else if (inst->param_types[n] == IND_CODE || g_op[inst->opcode - 1].d2)
 	{
 		inst->params[n] = two_octets_to_short(ram, *pc);
 		*pc = (*pc + 2) % MEM_SIZE;
@@ -89,14 +89,14 @@ void		execute_instruction(t_proc *proc, t_vm *vm)
 	}
 	pc = (proc->pc + 1) % MEM_SIZE;
 	inst.invalid = 0;
-	if (op_tab[inst.opcode - 1].ocp)
+	if (g_op[inst.opcode - 1].ocp)
 	{
 		inst.ocp = vm->ram[pc];
 		pc = (pc + 1) % MEM_SIZE;
 		ocp_to_param_types(&inst, inst.ocp);
 	}
 	else
-		tab_to_param_types(inst.param_types, op_tab[inst.opcode - 1].arg);
+		tab_to_param_types(inst.param_types, g_op[inst.opcode - 1].arg);
 	execute_instruction2(&inst, proc, &pc, vm);
 }
 
@@ -104,5 +104,5 @@ void		pre_execute_instruction(t_proc *proc, t_vm *vm)
 {
 	proc->opcode = vm->ram[proc->pc];
 	proc->cycles = proc->opcode > 0 && proc->opcode <= 16 ?
-		op_tab[(int)proc->opcode - 1].cycles : 1;
+		g_op[(int)proc->opcode - 1].cycles : 1;
 }

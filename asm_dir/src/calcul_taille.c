@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 16:40:52 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/09 18:44:53 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/02 16:27:31 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int		calcul_taille(t_asm *e)
 	int i;
 
 	t = 1;
-	t += op_tab[e->u.i].ocp;
+	t += g_op[e->u.i].ocp;
 	i = -1;
 	while (++i < e->u.nb_param)
 	{
-		e->u.t_arg[i] == T_DIR ? t += 4 - op_tab[e->u.i].d2 * 2 : 0;
+		e->u.t_arg[i] == T_DIR ? t += 4 - g_op[e->u.i].d2 * 2 : 0;
 		e->u.t_arg[i] == T_IND ? t += 2 : 0;
 		e->u.t_arg[i] == T_REG ? t += 1 : 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 19:38:02 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/10 18:33:55 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/02 16:29:29 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		is_space3(char *c, int i)
 {
 	if (c[i] == ' ' || c[i] == '\t')
 		return (1);
-	if (c[i] == '#')
+	if (c[i] == COMMENT_CHAR)
 	{
 		c[i] = ' ';
 		while (c[++i] && c[i] != '\n')
@@ -30,7 +30,7 @@ int		is_space2(char *c, int i)
 {
 	if (c[i] == ' ' || c[i] == '\t' || c[i] == '\n')
 		return (1);
-	if (c[i] == '#')
+	if (c[i] == COMMENT_CHAR)
 	{
 		while (c[++i] && c[i] != '\n')
 			c[i] = ' ';

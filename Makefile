@@ -6,7 +6,7 @@
 #    By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/15 15:37:25 by gdelabro          #+#    #+#              #
-#    Updated: 2017/10/26 17:58:01 by gdelabro         ###   ########.fr        #
+#    Updated: 2017/11/02 16:19:17 by gdelabro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,17 @@ SRC_NAME_2 = main.c\
 			 parser/parser.c\
 			 parser/load_player.c\
 			 parser/invalid_int.c\
+			 two_octet_to_short.c\
+			 four_octets_to_int.c\
 			 instructions/live.c\
 			 instructions/direct_load.c\
 			 instructions/direct_store.c\
 			 instructions/aritmetical.c\
+			 instructions/logical.c\
 			 instructions/fork.c\
 			 instructions/indirect_load.c\
 			 instructions/indirect_store.c\
-			 instructions/logical.c\
 			 instructions/zjmp.c\
-			 instructions/two_octet_to_short.c\
-			 instructions/four_octets_to_int.c\
 			 instructions/aff.c\
 			 ncurses/display.c\
 			 ncurses/init.c\
@@ -121,21 +121,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-
-
-
-clean_corewar:
-	@rm -rf $(OBJ_2)
-	@rm -rf $(OBJ_PATH_2)
-	@echo "\033[31;1m$(NAME_2)\033[0;1m: objects deleted"
-
-fclean_corewar: clean_corewar
-	@rm -rf $(NAME_2)
-	@echo "\033[31;1m$(NAME_2)\033[0;1m: $(NAME_2) deleted"
-
-re_corewar: fclean_corewar $(NAME_2)
-
-recw: re_corewar
-
-.PHONY: clean_corewar fclean_corewar re_corewar recw

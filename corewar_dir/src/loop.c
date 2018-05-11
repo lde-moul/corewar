@@ -6,7 +6,7 @@
 /*   By: lde-moul <lde-moul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:15:47 by lde-moul          #+#    #+#             */
-/*   Updated: 2017/11/01 17:04:46 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 19:00:02 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ static void		handle_processes(t_vm *vm)
 
 static int		display_if_needed(t_vm *vm)
 {
-	struct timeval	current_time;
-	struct timeval	time_diff;
-
-	gettimeofday(&current_time, NULL);
-	timersub(&current_time, &vm->last_display, &time_diff);
 	if (sleep_display(vm))
 		return (1);
 	display_ram(vm);
@@ -75,7 +70,8 @@ void			handle_main_loop(t_vm *vm)
 		}
 	}
 	vm->win = 1;
-	vm->visu ? display_ram(vm) : 0;
+	if (vm->visu)
+		display_ram(vm);
 	while (vm->visu && getch() != 27)
 		;
 }

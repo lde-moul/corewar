@@ -6,7 +6,7 @@
 /*   By: gdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 16:35:27 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/10/09 18:45:20 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/02 16:35:58 by gdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ void	test_one_arg(char *arg, int type, t_asm *e, int v)
 
 void	test_arg(t_asm *e)
 {
-	test_one_arg(e->u.p[0], op_tab[e->u.i].arg[0], e, 0);
+	test_one_arg(e->u.p[0], g_op[e->u.i].arg[0], e, 0);
 	e->u.nb_param >= 2 ?
-		test_one_arg(e->u.p[1], op_tab[e->u.i].arg[1], e, 1) : 0;
+		test_one_arg(e->u.p[1], g_op[e->u.i].arg[1], e, 1) : 0;
 	e->u.nb_param >= 3 ?
-		test_one_arg(e->u.p[2], op_tab[e->u.i].arg[2], e, 2) : 0;
+		test_one_arg(e->u.p[2], g_op[e->u.i].arg[2], e, 2) : 0;
 	e->num += calcul_taille(e);
 }

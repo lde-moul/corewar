@@ -6,7 +6,7 @@
 /*   By: gdelabro <gdelabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 20:10:14 by gdelabro          #+#    #+#             */
-/*   Updated: 2017/11/01 15:59:36 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 18:59:35 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define MIN_SPEED 1000000
 # define SPEED_STEP 3000
 # define DISPLAY_FREQUENCY 100000
-# define GLOW_CYCLE 49
+# define GLOW_CYCLE 50
 
 typedef struct	s_player
 {
@@ -62,9 +62,9 @@ typedef struct	s_proc
 
 typedef struct	s_vm
 {
-	unsigned char	ram_glow[MEM_SIZE];
 	unsigned char	ram[MEM_SIZE];
 	unsigned char	ram_color[MEM_SIZE];
+	unsigned char	ram_glow[MEM_SIZE];
 	unsigned char	ram_viewed[MEM_SIZE];
 	t_proc			*processes;
 	int				num_processes;
@@ -83,7 +83,6 @@ typedef struct	s_vm
 	int				visu;
 	int				speed;
 	int				pause;
-	struct timeval	last_display;
 	int				sbs;
 	t_proc			*viewed_process;
 	int				winner;
@@ -116,6 +115,7 @@ short			swap_short(short n);
 
 short			two_octets_to_short(unsigned char ram[MEM_SIZE], int pc);
 int				four_octets_to_int(unsigned char ram[MEM_SIZE], int pc);
+int				mod_adr(int adr);
 
 void			init_ncurses(t_vm *vm);
 int				sleep_display(t_vm *vm);
@@ -148,7 +148,6 @@ void			long_direct_store(t_vm *vm, t_proc *proc, t_instruction *inst);
 
 void			live(t_vm *vm, t_proc *proc, t_instruction *inst);
 void			zjmp(t_vm *vm, t_proc *proc, t_instruction *inst);
-int				mod_adr(int adr);
 
 void			cor_fork(t_vm *vm, t_proc *src, t_instruction *inst);
 void			cor_lfork(t_vm *vm, t_proc *src, t_instruction *inst);

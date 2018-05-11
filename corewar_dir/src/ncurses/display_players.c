@@ -6,7 +6,7 @@
 /*   By: afourcad <afourcad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 18:23:29 by afourcad          #+#    #+#             */
-/*   Updated: 2017/11/01 16:56:46 by gdelabro         ###   ########.fr       */
+/*   Updated: 2017/11/01 18:49:13 by lde-moul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ void	display_players(t_vm *vm, WINDOW *info, int *line)
 	players = 0;
 	while (players < vm->num_players)
 	{
-		mvwprintw(info, *line, 3, "Player (%d): ",
+		mvwprintw(info, *line, 3, "Player %d: ",
 				vm->players[players].number);
 		wattron(info, COLOR_PAIR(players + 2));
 		wattron(info, WA_BOLD);
 		wprintw(info, "%.44s", vm->players[players].header.prog_name);
 		wattroff(info, COLOR_PAIR(players + 2));
 		wattroff(info, WA_BOLD);
-		mvwprintw(info, *line + 1, 5, "Last live %-10d",
+		mvwprintw(info, *line + 1, 5, "Last live: %-10d",
 				vm->players[players].last_live);
-		mvwprintw(info, *line + 2, 5, "Number of live: %-10d",
+		mvwprintw(info, *line + 2, 5, "Number of lives: %-10d",
 				vm->players[players].nb_live);
 		++players;
 		*line = *line + 4;
